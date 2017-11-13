@@ -1,0 +1,23 @@
+<ion-view title="manos" id="page16" ng-init="tab=1">
+  <ion-nav-buttons side="right" class="has-header">
+    <button class="button button-icon icon ion-android-add-circle" ui-sref="home()"></button>
+  </ion-nav-buttons>
+  <ion-content padding="false" class=" manual-remove-top-padding has-header">
+    <div>
+      <img src="img/b6wpDhTFCebbLNVkLJ6w_nails-opi-01.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+    </div>
+    <div id="manos-button-bar19" class="button-bar"></div>
+    
+
+
+  <ion-list>
+
+  <ion-checkbox  ng-repeat = 'm in manos' ng-model="m.value" ng-click='selecciona(m)' >{{m.nombre}}</ion-checkbox>
+
+</ion-list>
+
+    <div id="manos-container19" class="busqueda">
+      <a ui-sref="resultados()" id="manos-button114" style="font-weight:300;text-align:left;" class="button button-assertive button-block icon-right ion-chevron-right">Busqueda</a>
+    </div>
+  </ion-content>
+</ion-view>

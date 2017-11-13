@@ -5,6 +5,7 @@
   "integrations": {
     "gulp": {}
   },
+  "gulpStartupTasks": ["sass", "watch"],
   "watchPatterns": [
     "scss/**/*",
     "www/**/*",
