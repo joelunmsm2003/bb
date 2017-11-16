@@ -14,10 +14,7 @@ angular.module('app.routes', [])
       templateUrl: 'templates/login.html',
       controller:'loginCtrl'
     })
-        .state('menu', {
-      url: '/side-menu21',
-      templateUrl: 'templates/menu.html'
-    })
+   
         .state('detalleDelServicio', {
       url: '/detalleservicio',
       templateUrl: 'templates/detalleDelServicio.html'
@@ -60,9 +57,48 @@ angular.module('app.routes', [])
       templateUrl: 'templates/detalleDeLaOpcion.html'
     })
         .state('inicio', {
-      url: '/page30',
+      url: '/inicio',
       templateUrl: 'templates/inicio.html'
     })
+
+
+    
+
+        .state('menu', {
+      url: '/menu',
+      templateUrl: 'templates/menu.html'
+    })
+
+        .state('menu.socia', {
+      url: '/socia',
+      views: {
+        'menu': {
+          templateUrl: 'templates/socia.html',
+          controller:'homeCtrl'
+        }
+      }
+    })
+
+            .state('menu.perfil', {
+      url: '/perfil',
+      views: {
+        'menu': {
+          templateUrl: 'templates/perfil.html',
+          controller:'homeCtrl'
+        }
+      }
+    })
+
+                .state('formularioservicio', {
+      url: '/formularioservicio',
+      templateUrl: 'templates/formularioservicio.html',
+      controller:'formularioCtrl',
+      params: {
+        servicio: null
+      }
+    })
+    
+
     ;
 
   // if none of the above states are matched, use this as the fallback
