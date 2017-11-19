@@ -65,12 +65,17 @@ $http.get(host+"/categoria/").success(function(response) {$scope.categoria=respo
 
 $http.get(host+"/distrito/").success(function(response) {$scope.distrito=response});
 
-$http.get(host+"/subcategoria/1").success(function(response) {$scope.manos=response});
+$http.get(host+"/subcategoria/1").success(function(response) {$scope.manos=response
+
+$scope.servicios = $scope.manos
+
+});
 
 $http.get(host+"/subcategoria/2").success(function(response) {$scope.pies=response});
 
 $http.get(host+"/subcategoria/3").success(function(response) {$scope.maquillaje=response});
 
+$http.get(host+"/subcategoria/4").success(function(response) {$scope.podologia=response});
 
 $scope.descripcion = false
 
@@ -93,15 +98,6 @@ $scope.deselec=function(data){
 
 
 
-
-
-
-
-
-
-
-
-
 }])
    
 .controller('introCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -111,6 +107,20 @@ function ($scope, $stateParams) {
 
 
 }])
+
+.controller('formularioCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+   
+    console.log('$stateParams',$stateParams)
+
+    $scope.servicio = $stateParams.servicio
+
+
+}])
+   
    
 .controller('resultadosCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function

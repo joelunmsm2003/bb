@@ -4368,9 +4368,9 @@ a.subdued {
 /* Allow parent element of tabs to define color, or just the tab itself */
 .tabs-light > .tabs,
 .tabs.tabs-light {
-  border-color: #ddd;
+  border-color: #ef473a;
   background-color: #fff;
-  background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%);
+  background-image: linear-gradient(0deg, #ef473a, #ef473a 50%, transparent 50%);
   color: #444; }
   .tabs-light > .tabs .tab-item .badge,
   .tabs.tabs-light .tab-item .badge {
@@ -4456,9 +4456,9 @@ a.subdued {
 
 .tabs-dark > .tabs,
 .tabs.tabs-dark {
-  border-color: #111;
+  border-color: #ef473a;
   background-color: #444;
-  background-image: linear-gradient(0deg, #111, #111 50%, transparent 50%);
+  background-image: linear-gradient(0deg, #ef473a, #ef473a 50%, transparent 50%);
   color: #fff; }
   .tabs-dark > .tabs .tab-item .badge,
   .tabs.tabs-dark .tab-item .badge {
@@ -9799,6 +9799,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.bar.bar-dark {
+  border-color: #444; }
+
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
   background: #ef473a;
   border-color: #ef473a; }
@@ -9809,6 +9812,15 @@ a.button {
 
 .ion-ios-checkmark {
   color: #ef473a; }
+
+.detallesubcategoria {
+  padding-top: 14px;
+  line-height: 23px;
+  letter-spacing: 0.2px;
+  font-weight: 300;
+  color: #123;
+  padding-left: 19px;
+  padding-right: 12px; }
 
 .parallax {
   /* The image used */
@@ -9847,7 +9859,11 @@ a.button {
 
 .profile-menu img {
   border-radius: 50%;
-  max-width: 200px; }
+  max-width: 251px; }
+
+.profile-menu1 img {
+  border-radius: 50%;
+  max-width: 220px; }
 
 .sider-menu, .inicio {
   background: red;

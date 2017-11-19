@@ -1,30 +1,39 @@
-<ion-view title="Detalle del Servicio" id="page5" ng-init="tab=1">
+<ion-view title="Detalle del Servicio" id="page5" >
   <ion-nav-buttons side="right" class="has-header">
-    <button class="button button-icon icon ion-android-add-circle" ui-sref="home()"></button>
+    
   </ion-nav-buttons>
   <ion-content padding="false" class="has-header">
     <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider3" delegate-handle="slider3" id="detalleDelServicio-slider3" style="width:100%;height:200px;">
       <ion-slide-page id="detalleDelServicio-slide29" style="background:url(&quot;img/5lKUebKSZeOV3IS6pdN4_3050970e98f7aa527a2c933d6907e4eefd61eeb0.XL2.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-      <ion-slide-page id="detalleDelServicio-slide210" style="background:url(&quot;img/b7yOmELqReEkFAwp84LA_express-manicure.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-      <ion-slide-page id="detalleDelServicio-slide211" style="background:url(&quot;img/FEXaMWJNRDO1Mq9jy9BA_14054437044916-0-680x276.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+
+
     </ion-slides>
+
+
     <div id="detalleDelServicio-container11" class="busqueda">
       <h3 id="detalleDelServicio-heading8" style="color:#000000;font-weight:300;">Manicure Express</h3>
       <div id="detalleDelServicio-markdown10" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">Servicio personalizado</p>
+        <p style="color:#000000;">Berta Rebeca</p>
       </div>
     </div>
-    <div id="detalleDelServicio-button-bar10" class="button-bar">
-      <button id="detalleDelServicio-button109" style="border-radius:0px 0px 0px 0px;" class="button button-assertive button-block button-outline">Opciones</button>
-      <button id="detalleDelServicio-button110" style="border-radius:0px 0px 0px 0px;" class="button button-assertive button-block button-outline">Servicios</button>
-      <button id="detalleDelServicio-button113" style="border-radius:0px 0px 0px 0px;" class="button button-assertive button-block button-outline">Info</button>
-    </div>
-    <ion-list id="detalleDelServicio-list21">
-      <ion-item class="item-icon-left" id="detalleDelServicio-list-item90" ui-sref="detalleDeLaOpcion()">
-        <i class="icon ion-ios-checkmark-outline"></i>Estilo Nuevo</ion-item>
-      <ion-item class="item-icon-left" id="detalleDelServicio-list-item94" ui-sref="detalleDeLaOpcion()">
-        <i class="icon ion-ios-checkmark-outline"></i>Estilo Nuevo</ion-item>
-    </ion-list>
-    <a ui-sref="reservar()" id="detalleDelServicio-button115" class="button button-assertive button-block">Reservar</a>
+    
+      <form padding="false" id="login-form4" class="list center-form busqueda">
+      
+
+
+  
+   <label class="item item-input" id="reservar-input10">
+        <span class="input-label">Que dia?</span>
+        <input type="date" placeholder="">
+      </label>
+      <label class="item item-input" id="reservar-input39">
+        <span class="input-label">A que hora?</span>
+        <input type="time" placeholder="">
+      </label>
+          <a  id="detalleDelServicio-button115" class="button button-assertive button-block">Reservar</a>
+      </form>
+
+
+  
   </ion-content>
 </ion-view>

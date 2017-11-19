@@ -1,20 +1,45 @@
-<ion-view title="manos" id="page16" ng-init="tab=1">
+<ion-view title="Belleza Express" id="page16" ng-init="tab=1">
   <ion-nav-buttons side="right" class="has-header">
-    <button class="button button-icon icon ion-android-add-circle" ui-sref="home()"></button>
+    <button class="button button-icon icon ion-ios-rose" ui-sref="resultados()"></button>
   </ion-nav-buttons>
-  <ion-content padding="false" class=" manual-remove-top-padding has-header">
-    <div>
-      <img src="img/b6wpDhTFCebbLNVkLJ6w_nails-opi-01.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+
+  <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
+    <div class="tabs">
+      <a class="tab-item" ng-click='servicios=manos' ng-class="{active: servicios==manos}" >
+      
+        <span class='icon-servicios'>Manos</span>
+      </a>
+      <a class="tab-item" ng-class="{active: servicios==pies}" >
+   
+        <span class='icon-servicios' ng-click='servicios=pies'>Pies</span>
+      </a>
+      <a class="tab-item" ng-class="{active: servicios==maquillaje}" >
+  
+        <span class='icon-servicios' ng-click='servicios=maquillaje'>Maquillaje</span>
+      </a>
+
+      <a class="tab-item" ng-class="{active: servicios==podologia}" >
+
+        <span class='icon-servicios' ng-click='servicios=podologia'>Podologia</span>
+      </a>
+
+
     </div>
-    <div id="manos-button-bar19" class="button-bar"></div>
-    
+  </div>
+
+  <ion-content padding="false" class=" manual-remove-top-padding has-header">
+    <!-- <div>
+      <img src="img/b6wpDhTFCebbLNVkLJ6w_nails-opi-01.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+    </div> -->
+     
+      <div class="spacer" style="height: 50px;"></div>         
 
 
  
-
-
 <div class="list">
-  <div class="item item-icon-left item-icon-right" ng-repeat = 'm in manos' ng-model="m.value" >
+
+  <div ng-repeat = 'm in servicios'>
+  <div class="item item-icon-left item-icon-right"  ng-model="m.value" >
 
     <i class="icon ion-ios-plus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-hide='descripcion' ng-click='selecciona(m);descripcion=true'></i>
 
@@ -25,10 +50,7 @@
 
 
   
-        <p ng-show='descripcion' style='padding-top: 14px;line-height: 23px;
-    letter-spacing: .2px;font-weight: 300;' ng-bind-html="m.descripcion"> 
         
-        </p>
 
      <i class="icon ion-ios-checkmark" ng-if='m.check===true' style='max-height: 51px;' ng-click="deselec(m)"></i>
 
@@ -38,15 +60,18 @@
 
   </div>
 
+  <p ng-show='descripcion' class='detallesubcategoria' ng-bind-html="m.descripcion"> 
+        
+        </p>
+
+
+  </div>
+
 
 </div>
 
     
-    <div id="manos-container19" class="busqueda">
-      <a ui-sref="resultados()" id="manos-button114" style="font-weight:300;text-align:left;" class="button button-assertive button-block icon-right ion-chevron-right">Busqueda</a>
-
-    </div>
-
+ 
 
 
 

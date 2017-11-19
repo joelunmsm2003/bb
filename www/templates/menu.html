@@ -6,7 +6,7 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="side-menu21"></ion-nav-view>
+    <ion-nav-view name="menu"></ion-nav-view>
   </ion-side-menu-content>
   <ion-side-menu side="left" id="side-menu21" style="background-color:#FFF7F7;">
     <ion-content padding="false" style="top:0px !important;" class="side-menu-left sider-menu">
@@ -17,10 +17,10 @@
       <h1 id="menu-heading4" style="color:#FFFFFF;font-weight:300;text-align:center;">Ana Maria </h1>
       <div class="spacer" style="width: 268px; height: 29px;"></div>
       <ion-list id="menu-list6">
-        <ion-item class="item-icon-left dark side-menu" id="menu-list-item17">
-          <i class="icon ion-heart"></i>Inicio</ion-item>
-        <ion-item class="item-icon-left dark side-menu" id="menu-list-item71" href-inappbrowser="page19">
-          <i class="icon ion-calendar"></i>Vender</ion-item>
+        <ion-item ui-sref="menu.perfil()" menu-close="" class="item-icon-left dark side-menu" id="menu-list-item17">
+             <img class='icon'  src="img/woman-with-long-hair.png">Mi Perfil</ion-item>
+        <ion-item  ui-sref="menu.socia()" menu-close="" class="item-icon-left dark side-menu"  id="menu-list-item71" >
+          <img class='icon'   src="img/lipstick.png">Servicios</ion-item>
         <ion-item class="item-icon-left dark side-menu" id="menu-list-item73">
           <i class="icon ion-android-people"></i>Mis Clientes</ion-item>
         <ion-item class="item-icon-left side-menu" id="menu-list-item20">
@@ -29,6 +29,12 @@
       <div class="spacer" style="height: 100px;"></div>
       <div class="spacer" style="height: 100px;"></div>
       <div class="spacer" style="height: 100px;"></div>
+      <style type="text/css">
+        .icon{
+          max-width: 30px;
+          max-height: 30px;
+          margin-top: 7px;}
+      </style>
     </ion-content>
   </ion-side-menu>
 </ion-side-menus>

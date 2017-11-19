@@ -4,6 +4,11 @@ $secundario: #1b1b1b;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/lib/ionic/scss/ionic";
 
+.bar.bar-dark {
+    border-color: #444;
+
+   }
+
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
     background: #ef473a;
     border-color: #ef473a;
@@ -17,6 +22,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .ion-ios-checkmark{
 
 	color:$assertive;
+}
+
+.detallesubcategoria{
+	    padding-top: 14px;
+    line-height: 23px;
+    letter-spacing: 0.2px;
+    font-weight: 300;
+    color: #123;
+    padding-left: 19px;
+    padding-right: 12px;
 }
 
 .parallax {
@@ -61,9 +76,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .profile-menu {
 	img {
 		border-radius: 50%;
-		max-width: 200px;
+		max-width: 251px;
 	}
 	
+}
+
+.profile-menu1 img {
+    border-radius: 50%;
+    max-width: 220px;
 }
 .sider-menu,.inicio {
 	background: red;
