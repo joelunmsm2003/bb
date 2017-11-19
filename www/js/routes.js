@@ -49,8 +49,9 @@ angular.module('app.routes', [])
       templateUrl: 'templates/resultados.html'
     })
         .state('reservar', {
-      url: '/page22',
-      templateUrl: 'templates/reservar.html'
+      url: '/reservar',
+      templateUrl: 'templates/reservar.html',
+      controller:'homeCtrl'
     })
         .state('detalleDeLaOpcion', {
       url: '/page13',

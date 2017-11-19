@@ -81,11 +81,15 @@ $scope.descripcion = false
 
 $scope.check=false
 
+$scope.book = 0
+
 $scope.selec=function(data){
 
     console.log('hdhdh',data)
 
     data.check=true
+
+    $scope.book=$scope.book+1
 }
 
 $scope.deselec=function(data){
@@ -93,6 +97,8 @@ $scope.deselec=function(data){
     console.log('hdhdh',data)
 
     data.check=false
+
+    $scope.book=$scope.book-1
 }
 
 
