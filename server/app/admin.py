@@ -32,21 +32,68 @@ class SubCategoriaAdmin(admin.ModelAdmin):
 	def categoria(self, obj):
 		return obj.nombre
 
-@admin.register(Socio)
-class SocioAdmin(admin.ModelAdmin):
-    list_display = ('id','nombre')
-    list_editable = ('nombre',)
+
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('id','nombre')
     list_editable = ('nombre',)
 
-
 @admin.register(Distrito)
 class DistritoAdmin(admin.ModelAdmin):
     list_display = ('id','nombre')
     list_editable = ('nombre',)
+
+
+
+@admin.register(Dia)
+class DistritoAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre')
+    list_editable = ('nombre',)
+
+@admin.register(Turno)
+class DistritoAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre')
+    list_editable = ('nombre',)
+
+@admin.register(Socia)
+class SociaAdmin(admin.ModelAdmin):
+    list_display = ('id','user','nombre','apellido','dni','telefono','correo','direccion','distrito','referencia','texperiencia','photo','ncuenta')
+
+
+
+@admin.register(Sociasubcategoria)
+class SociasubcategoriaAdmin(admin.ModelAdmin):
+	list_display = ('id','socia','subcategoria')
+
+	
+	def socia(self, obj):
+		return obj.socia.nombre
+
+	def subcategoria(self, obj):
+		return obj.subcategoria.nombre
+
+@admin.register(Opcion)
+class OpcionAdmin(admin.ModelAdmin):
+	list_display = ('id','sociasubcategoria','nombre')
+
+	
+	def sociasubcategoria(self, obj):
+		return str(obj.sociasubcategoria.socia.nombre)+str(obj.sociasubcategoria.subcategoria.nombre)
+
+@admin.register(Turnosocia)
+class TurnosociaAdmin(admin.ModelAdmin):
+	list_display = ('id','turno','sociasubcategoria','fecha_inicio','fecha_fin')
+
+	
+	def turno(self, obj):
+		return obj.turno.nombre
+
+	def sociasubcategoria(self, obj):
+		return obj.sociasubcategoria.socia.nombre
+
+
+
 
 
 # @admin.register(Pais)

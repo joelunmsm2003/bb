@@ -9,6 +9,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     border-color: #ef473a;
 }
 
+.item-icon-left {
+    padding-left: 54px;
+    letter-spacing: .6px;
+}
+
+.ion-ios-checkmark{
+
+	color:$assertive;
+}
 
 .parallax {
 	/* The image used */

@@ -9803,6 +9803,13 @@ a.button {
   background: #ef473a;
   border-color: #ef473a; }
 
+.item-icon-left {
+  padding-left: 54px;
+  letter-spacing: .6px; }
+
+.ion-ios-checkmark {
+  color: #ef473a; }
+
 .parallax {
   /* The image used */
   background-image: url("http: //sourcemage.net/wp-content/uploads/2017/05/Castor-oil-for-hair-growth.jpg");

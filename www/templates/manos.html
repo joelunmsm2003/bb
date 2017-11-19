@@ -10,14 +10,45 @@
     
 
 
-  <ion-list>
+ 
 
-  <ion-checkbox  ng-repeat = 'm in manos' ng-model="m.value" ng-click='selecciona(m)' >{{m.nombre}}</ion-checkbox>
 
-</ion-list>
+<div class="list">
+  <div class="item item-icon-left item-icon-right" ng-repeat = 'm in manos' ng-model="m.value" >
 
+    <i class="icon ion-ios-plus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-hide='descripcion' ng-click='selecciona(m);descripcion=true'></i>
+
+    <i class="icon ion-ios-minus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-show='descripcion' ng-click='selecciona(m);descripcion=false'></i>
+
+    {{m.nombre}} 
+ 
+
+
+  
+        <p ng-show='descripcion' style='padding-top: 14px;line-height: 23px;
+    letter-spacing: .2px;font-weight: 300;' ng-bind-html="m.descripcion"> 
+        
+        </p>
+
+     <i class="icon ion-ios-checkmark" ng-if='m.check===true' style='max-height: 51px;' ng-click="deselec(m)"></i>
+
+     <i class="icon ion-ios-checkmark-outline" ng-if='m.check===false' style='max-height: 51px;' ng-click="selec(m)"></i>
+
+
+
+  </div>
+
+
+</div>
+
+    
     <div id="manos-container19" class="busqueda">
       <a ui-sref="resultados()" id="manos-button114" style="font-weight:300;text-align:left;" class="button button-assertive button-block icon-right ion-chevron-right">Busqueda</a>
+
     </div>
+
+
+
+
   </ion-content>
 </ion-view>

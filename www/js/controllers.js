@@ -1,4 +1,4 @@
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['ionic'])
   
 .controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -6,6 +6,9 @@ angular.module('app.controllers', [])
 function ($scope, $stateParams) {
 
     $scope.ola ='sjsjs'
+
+
+
 
 }])
    
@@ -42,18 +45,21 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('manosCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('manosCtrl', ['$scope', '$stateParams','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
 
+
+
+
 }])
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http) {
+function ($scope, $stateParams,$http,$ionicPopover) {
     
 $http.get(host+"/categoria/").success(function(response) {$scope.categoria=response});
 
@@ -64,6 +70,37 @@ $http.get(host+"/subcategoria/1").success(function(response) {$scope.manos=respo
 $http.get(host+"/subcategoria/2").success(function(response) {$scope.pies=response});
 
 $http.get(host+"/subcategoria/3").success(function(response) {$scope.maquillaje=response});
+
+
+$scope.descripcion = false
+
+$scope.check=false
+
+$scope.selec=function(data){
+
+    console.log('hdhdh',data)
+
+    data.check=true
+}
+
+$scope.deselec=function(data){
+
+    console.log('hdhdh',data)
+
+    data.check=false
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 }])
    
