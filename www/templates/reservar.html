@@ -1,15 +1,35 @@
 <ion-view title="Reservar" id="page22">
-  <ion-nav-buttons side="right" class="has-header">
-    
-  </ion-nav-buttons>
+  
   <ion-content padding="true" class="has-header">
     <div id="reservar-button-bar16" class="button-bar"></div>
     <div id="reservar-button-bar17" class="button-bar"></div>
     <form id="reservar-form21" class="list">
       
       <div id="reservar-button-bar18" class="button-bar"></div>
+
+      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">Tu pedido</h4>
+
+      <div class="list">
+
+      <div class="item ">
+        Manos
+      </div>
+
+      <div class="item">
+        Pies
+      </div>
+
+
+
+    </div>
+
+
       
-      <h3 id="reservar-heading9" style="color:#000000;font-weight:300;">Seleccione la fecha</h3>
+      <div class='circulo'>1</div>
+
+      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">Que dia y aque hora quieres el servicio?</h4>
+
+      <div class="spacer" style="height:10px;"></div>
       <label class="item item-input" id="reservar-input10">
         <span class="input-label">Que dia?</span>
         <input type="date" placeholder="">
@@ -18,6 +38,12 @@
         <span class="input-label">A que hora?</span>
         <input type="time" placeholder="">
       </label>
+      <div class="spacer" style="height:20px;"></div>
+
+       <div class='circulo'>2</div>
+
+      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">En donde deseas el servicio?</h4>
+      <div class="spacer" style="height:10px;"></div>
 
       <label class="item item-select" id="bellezaExpress-select15">
         <span class="input-label">Ubicacion</span>
@@ -27,8 +53,51 @@
         </select>
       </label>
 
+      <div class="spacer" style="height:20px;"></div>
+
+
+      <div class='circulo'>3</div>
+
+      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">Quieres una manicurista en particular?</h4>
+      <div class="spacer" style="height:10px;"></div>
+
+      <label class="item item-select" id="bellezaExpress-select15">
+        <span class="input-label">Nombre</span>
+        <select>
+          <option >Ana</option>
+          <option >Alejandra</option>
+    
+        </select>
+      </label>
+<!-- 
+    <label class="item item-input" id="reservar-input39">
+        <span class="input-label">Numero de personas</span>
+        <input type="number" placeholder="">
+      </label> -->
+
+
 
     </form>
-    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="resultados()">Buscar</button>
+    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="confirmacion()">Siguiente</button>
   </ion-content>
 </ion-view>
+
+<style type="text/css">
+  
+  .circulo{
+        align-items: center;
+    justify-content: center;
+    background-color: #ef473a;
+    color: white;
+    width: 3em;
+    border-radius: 50%;
+    vertical-align: middle;
+    height: 3em;
+    padding: 9px;
+    font-size: 13px;
+    padding-left: 17px;
+  }
+  .circulo,h4{
+    display: inline-block;
+  }
+</style>

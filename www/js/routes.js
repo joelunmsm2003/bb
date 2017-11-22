@@ -44,6 +44,10 @@ angular.module('app.routes', [])
       url: '/page9',
       templateUrl: 'templates/intro.html'
     })
+         .state('confirmacion', {
+      url: '/confirmacion',
+      templateUrl: 'templates/confirmacion.html'
+    })
         .state('resultados', {
       url: '/resultados',
       templateUrl: 'templates/resultados.html'
