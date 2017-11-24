@@ -26,6 +26,7 @@ class Categoria(models.Model):
 class Subcategoria(models.Model):
     nombre = models.CharField(max_length=1000)
     categoria = models.ForeignKey(Categoria,blank=True, null=True)
+    precio = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -84,6 +85,7 @@ class Sociasubcategoria(models.Model):
     socia = models.ForeignKey(Socia,blank=True, null=True)
     subcategoria = models.ForeignKey(Subcategoria,blank=True, null=True)
 
+
     class Meta:
         managed = True
         verbose_name = 'Socia/Especialidad'
@@ -113,6 +115,8 @@ class Turno(models.Model):
     def __unicode__(self):
         return self.nombre
 
+
+
 class Dia(models.Model):
 
     nombre = models.CharField(max_length=1000,blank=True, null=True)
@@ -124,14 +128,61 @@ class Dia(models.Model):
     def __unicode__(self):
         return self.nombre
 
+class Servicio(models.Model):
+    socia = models.ForeignKey(Socia,blank=True, null=True)
+    cliente = models.ForeignKey(Cliente,max_length=1000,blank=True, null=True)
+    fecha_inicio = models.TimeField(blank=True, null=True)
+    fecha_fin = models.TimeField(blank=True, null=True)
+    dia = models.ForeignKey(Dia,blank=True, null=True)
+    notificacion_titulo= models.CharField(max_length=1000,blank=True)
+    notificacion_cuerpo= models.TextField(max_length=1000,blank=True)
+    puntaje=models.IntegerField(blank=True, null=True)
+    precio = models.FloatField(blank=True, null=True)
+
+
+    class Meta:
+        managed = True
+        verbose_name = 'Servicio'
+
+    def __unicode__(self):
+        return self.socia.nombre+'/'+self.cliente.nombre
+
+
+
+class Serviciopedido(models.Model):
+    servicio = models.ForeignKey(Servicio,blank=True, null=True)
+    subcategoria =models.ForeignKey(Subcategoria,blank=True,null=True)
+
+
+    class Meta:
+        managed = True
+        verbose_name = 'Servicio / Pedido'
+
+    def __unicode__(self):
+        return self.servicio+'/'+self.subcategoria.nombre
+
+class Notificacion(models.Model):
+
+    fecha = models.DateTimeField(blank=True, null=True)
+    descripcion = models.CharField(max_length=1000,blank=True, null=True)
+    servicio = models.ForeignKey(Servicio,blank=True, null=True)
+
+    class Meta:
+        managed = True
+        verbose_name = 'Notificacion'
+
+    def __unicode__(self):
+        return self.nombre
+
+
 
 class Turnosocia(models.Model):
     sociasubcategoria = models.ForeignKey(Sociasubcategoria,blank=True, null=True)
     turno = models.ForeignKey(Turno,max_length=1000,blank=True, null=True)
     fecha_inicio = models.TimeField(blank=True, null=True)
     fecha_fin = models.TimeField(blank=True, null=True)
-    dia = models.ForeignKey(Dia,blank=True, null=True)
-
+    dia = models.DateField(blank=True, null=True)
+    
 
     class Meta:
         managed = True

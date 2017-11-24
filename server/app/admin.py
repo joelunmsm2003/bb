@@ -25,8 +25,8 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Subcategoria)
 class SubCategoriaAdmin(admin.ModelAdmin):
-	list_display = ('id','nombre','categoria')
-	list_editable = ('nombre',)
+	list_display = ('id','nombre','categoria','precio')
+	list_editable = ('nombre','precio')
 	list_filter = ('categoria__nombre',)
 
 	def categoria(self, obj):
@@ -65,6 +65,7 @@ class SociaAdmin(admin.ModelAdmin):
 @admin.register(Sociasubcategoria)
 class SociasubcategoriaAdmin(admin.ModelAdmin):
 	list_display = ('id','socia','subcategoria')
+	list_filter=('socia__nombre',)
 
 	
 	def socia(self, obj):
@@ -73,13 +74,13 @@ class SociasubcategoriaAdmin(admin.ModelAdmin):
 	def subcategoria(self, obj):
 		return obj.subcategoria.nombre
 
-@admin.register(Opcion)
-class OpcionAdmin(admin.ModelAdmin):
-	list_display = ('id','sociasubcategoria','nombre')
+# @admin.register(Opcion)
+# class OpcionAdmin(admin.ModelAdmin):
+# 	list_display = ('id','sociasubcategoria','nombre')
 
 	
-	def sociasubcategoria(self, obj):
-		return str(obj.sociasubcategoria.socia.nombre)+str(obj.sociasubcategoria.subcategoria.nombre)
+# 	def sociasubcategoria(self, obj):
+# 		return str(obj.sociasubcategoria.socia.nombre)+str(obj.sociasubcategoria.subcategoria.nombre)
 
 @admin.register(Turnosocia)
 class TurnosociaAdmin(admin.ModelAdmin):
@@ -93,6 +94,42 @@ class TurnosociaAdmin(admin.ModelAdmin):
 		return obj.sociasubcategoria.socia.nombre
 
 
+
+
+@admin.register(Servicio)
+class ServicioAdmin(admin.ModelAdmin):
+	list_display = ('id','socia','cliente','fecha_inicio','fecha_fin','dia','puntaje')
+	list_editable = ('puntaje',)
+	actions=['enviar_notificacion']
+
+	def enviar_notificacion(self, request, queryset):
+
+		for obj in queryset:
+
+			print obj.cliente.nombre
+
+		return None
+
+
+
+	
+	def turno(self, obj):
+		return obj.socia.nombre
+
+	def sociasubcategoria(self, obj):
+		return obj.cliente.nombre
+
+
+@admin.register(Serviciopedido)
+class ServiciopedidoAdmin(admin.ModelAdmin):
+	list_display = ('id','servicio','subcategoria')
+
+	
+	def servicio(self, obj):
+		return 'Socia:'+obj.servicio.socia.nombre+'/'+obj.servicio.cliente.nombre+'/'+obj.servicio.dia+' '+obj.servicio.fecha_inicio+'/'+obj.servicio.fecha_fin
+
+	def sociasubcategoria(self, obj):
+		return obj.subcategoria.nombre
 
 
 
