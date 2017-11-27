@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^termometro/$', Termometro.as_view()),
     url(r'^metricas/(\d+)/(\d+)/(\d+)/(\d+)$', Metricas.as_view()),
     url(r'^modalidad/$', ListaModalidad.as_view()),
-    url(r'^pariente/$', CreaPariente.as_view()),
     url(r'^gestion/$', MiGestion.as_view()),
     url(r'^updatecita/$', Updatecita.as_view()),
     url(r'^resumen/$', Resumen.as_view()),
@@ -47,4 +46,5 @@ urlpatterns = [
     url(r'^categoria/', 'app.views.categoria'),
     url(r'^distrito/', 'app.views.distrito'),
     url(r'^subcategoria/(\d+)', 'app.views.subcategoria'),
+    url(r'^buscasocia/(\d+)',  Buscasocia.as_view()),
 ]

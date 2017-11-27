@@ -11,13 +11,17 @@
 
       <div class="list">
 
-      <div class="item ">
-        Manos
+      <div class="item  " ng-repeat="p in pedidos">
+        {{p.nombre}}
+
+        <span class="item-note">
+      S/. {{p.precio}}
+    </span>
       </div>
 
-      <div class="item">
-        Pies
-      </div>
+
+
+
 
 
 
@@ -32,11 +36,11 @@
       <div class="spacer" style="height:10px;"></div>
       <label class="item item-input" id="reservar-input10">
         <span class="input-label">Que dia?</span>
-        <input type="date" placeholder="">
+        <input type="date" placeholder="" ng-model='reserva.dia'>
       </label>
       <label class="item item-input" id="reservar-input39">
         <span class="input-label">A que hora?</span>
-        <input type="time" placeholder="">
+        <input type="time" placeholder="" ng-model='reserva.hora'>
       </label>
       <div class="spacer" style="height:20px;"></div>
 
@@ -47,8 +51,8 @@
 
       <label class="item item-select" id="bellezaExpress-select15">
         <span class="input-label">Ubicacion</span>
-        <select>
-          <option ng-repeat='d in distrito'>{{d.nombre}}</option>
+        <select ng-model='reserva.ubicacion'>
+          <option ng-repeat='d in distrito' >{{d.nombre}}</option>
     
         </select>
       </label>
@@ -78,7 +82,7 @@
 
 
     </form>
-    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="confirmacion()">Siguiente</button>
+    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="confirmacion({pedido: pedidos,reserva:reserva})">Siguiente</button>
   </ion-content>
 </ion-view>
 

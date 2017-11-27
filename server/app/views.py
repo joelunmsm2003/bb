@@ -51,6 +51,11 @@ from django.db.models import Count,Sum
 from PIL import Image
 from resizeimage import resizeimage
 
+import operator
+from django.db.models import Q
+
+import datetime
+
 class Uploadphoto(JSONWebTokenAuthMixin, View):
 
 	#Retorna datos del agente
@@ -344,17 +349,76 @@ class Userfono(JSONWebTokenAuthMixin, View):
 		return HttpResponse(simplejson.dumps('OK'), content_type="application/json")
 
 
-class CreaPariente(JSONWebTokenAuthMixin, View):
+class Buscasocia(JSONWebTokenAuthMixin, View):
 
 	#Crea nuevo cliente
-	def post(self, request):
+	def post(self,request,id_socia):
 
 		data = json.loads(request.body)
 
+		pedidos =[]
+
+		for p in data['pedido']:
+
+			pedidos.append(p['nombre'])
+
+		reservado = str(data['reserva']['hora'])
+
+		reservado = datetime.datetime.strptime(reservado, '%Y-%m-%dT%H:%M:%S.%fZ')-timedelta(hours=5)
+
+		reservado= str(reservado.strftime('%H:%M:%S'))
 
 
-		ParientesCliente(nombre=data['nombre'],fecha_nacimiento=data['fecha_nacimiento'],cliente_id=data['cliente'],relacion_id=data['relacion']).save()
+		dia = data['reserva']['dia']
 
+		ubicacion = data['reserva']['ubicacion']
+
+		print 'ubicacion',ubicacion
+
+		dia=dia[0:10]
+
+		hora = reservado[0:2]
+
+		minuto = reservado[3:5]
+
+		segundo = reservado[6:8]
+
+		hora_reserva =  hora+':'+minuto+'[:'+segundo+'[.000000]]'
+
+		print 'hora_reserva',hora_reserva
+
+		fecha=  datetime.datetime.strptime(str(dia), '%Y-%m-%d')
+
+		dia = fecha.strftime("%a")
+
+		if dia=='Sun': dia='Domingo'
+		if dia=='Mon': dia='Lunes'
+		if dia=='Tue': dia='Martes'
+		if dia=='Wed': dia='Miercoles'
+		if dia=='Thu': dia='Jueves'
+		if dia=='Fri': dia='Viernes'
+		if dia=='Sat': dia='Sabado'
+
+
+		query = reduce(operator.and_, (Q(subcategoria__nombre__contains = item) for item in pedidos))
+		
+		#{u'pedido': [{u'descripcion': u'ghghg<br> Costo: S/. 2.0', u'nombre': u'Manicure Express', u'precio': 2, u'id': 1, u'check': True}, {u'descripcion': u'<br> Costo: S/. 2.0', u'nombre': u'Manicure Spa', u'precio': 2, u'id': 2, u'check': True}]}
+
+		sociascate=Sociasubcategoria.objects.filter(query)
+
+		print sociascate
+
+		for s in sociascate:
+
+			if (Sociadistrito.objects.filter(distrito__nombre=ubicacion).count()>0):
+
+				t = Turnosocia.objects.filter(socia_id=s.socia.id,fecha_inicio__lte=hora_reserva,fecha_fin__gte=hora_reserva,dia__nombre=dia)
+
+				### Envia notificacion a la socia
+
+				if t.count()>0:
+
+					print 'Enviando notificacion...'
 
 		return HttpResponse(simplejson.dumps('cliente_id'), content_type="application/json")
 
@@ -369,7 +433,17 @@ def categoria(request):
 
 def subcategoria(request,categoria):
 
-	c= Subcategoria.objects.filter(categoria_id=categoria).values('id','nombre')
+	c= Subcategoria.objects.filter(categoria_id=categoria).values('id','nombre','descripcion','precio')
+
+	for i in range(len(c)):
+
+		c[i]['check']=False
+
+		if c[i]['descripcion'] == None: c[i]['descripcion']= ''
+		if c[i]['precio'] == None: c[i]['precio']= ''
+
+		c[i]['descripcion']=c[i]['descripcion']+'<br> Costo: S/. '+str(c[i]['precio'])
+
 
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
 
@@ -382,6 +456,8 @@ def distrito(request):
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
 
 	return HttpResponse(c, content_type="application/json")
+
+
 
 
 class Creacliente(JSONWebTokenAuthMixin, View):

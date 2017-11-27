@@ -8,7 +8,9 @@
 <!--     <div class="profile-menu1">
       <img src="http://www.freeiconspng.com/uploads/facebook-sign-in-button-png-26.png" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
     </div> -->
-      <form id="login-form4" class="list center-form">
+
+ 
+      <form ng-show='registrarse' id="login-form4" class="list center-form">
  
         <label class="item item-input" id="login-input4">
           <span class="input-label">Email</span>
@@ -29,9 +31,27 @@
           <input type="text" placeholder="">
         </label>
 
-        <a ui-sref="home()" id="login-button12" class="button button-dark button-block">Ingresar</a>
+        <a ui-sref="home()" id="login-button12" class="button button-dark button-block">Registrarse</a>
+      </form>
+
+       <form ng-hide='registrarse' id="login-form4" class="list center-form">
+ 
+        <label class="item item-input" id="login-input4">
+          <span class="input-label">Email</span>
+          <input type="text" placeholder="" ng-model='user.username'>
+        </label>
+
+        <label class="item item-input" id="login-input5">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model='user.password' placeholder="">
+        </label>
+
+        <a ng-click='ingresar(user)' id="login-button12" class="button button-dark button-block">Ingresar</a>
       </form>
     </div>
+
+    <h4><a href='#' ng-hide='registrarse' ng-click='registrarse=true'>Registrese</a></h4>
+     <h4><a href='#' ng-show='registrarse' ng-click='registrarse=false'>Iniciar sesion</a></h4>
     <div id="login-button-bar2" class="button-bar"></div>
 
           <center><button class="button button-assertive" ui-sref="menu.socia()" style='color:#fff' >

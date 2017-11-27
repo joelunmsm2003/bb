@@ -47,20 +47,24 @@
     <i class="icon ion-ios-minus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-show='descripcion' ng-click='selecciona(m);descripcion=false'></i>
 
     {{m.nombre}} 
+   
  
 
 
 
-     <i class="icon ion-ios-checkmark" ng-if='m.check===true' style='max-height: 51px;' ng-click="deselec(m)"></i>
+     <i class="icon ion-ios-checkmark" ng-if='m.check===true;' style='max-height: 51px;' ng-model='m.check' ng-click="deselec(m,$index)"></i>
 
-     <i class="icon ion-ios-checkmark-outline" ng-if='m.check===false' style='max-height: 51px;' ng-click="selec(m)"></i>
+     <i class="icon ion-ios-checkmark-outline" ng-if='m.check===false;' style='max-height: 51px;' ng-model='m.check' ng-click="selec(m,$index)"></i>
 
 
 
   </div>
 
   <p ng-show='descripcion' class='detallesubcategoria' ng-bind-html="m.descripcion"> 
-        
+
+
+             
+
         </p>
 
 
@@ -74,14 +78,16 @@
 
   </ion-content>
 
-  <div class="fixed44" ><a ui-sref="reservar()" style=' background: #ef473a;
+  <div class="fixed44" ng-if='book>0' ><a ui-sref="reservar({servicio: totalpedido})" style=' background: #ef473a;
     padding: 45px;
     border-radius: 2px;
     color: #fff;
     text-decoration: none;
     padding-top: 12px;
     padding-bottom: 12px;
-     padding-left: 21px;' > <i class="fa fa-camera" aria-hidden="true"></i> Reservar <span style='background: #fff;
+     padding-left: 21px;' > <i class="fa fa-camera" aria-hidden="true"></i>  <i class="icon ion-ios-cart" style="font-size: 22px;
+    margin-left: 0px;
+    margin-right: 10px;" ></i> Reservar <span style='background: #fff;
     color: #123;
     width: 24px;
     height: 24px;
@@ -90,7 +96,8 @@
     padding-top: 1px;
     margin-left: 11px;
     position: absolute;
-    margin-top: -2px;;'> {{book}} </span> </a></div>
+    margin-top: 1px;;'> {{book}}  </span><span style='margin-left: 50px;
+'> S/. {{precio}}</span></a></div>
 
 
 

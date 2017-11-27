@@ -10093,19 +10093,19 @@ tr:nth-child(even) {
 
 body {
   color: #A42121;
-  font-family: Raleway, sans-serif; }
+  font-family: 'Didact Gothic', sans-serif; }
 
 body.platform-ios {
-  font-family: Raleway, sans-serif; }
+  font-family: 'Didact Gothic', sans-serif; }
 
 .ionic-body.platform-ios {
-  font-family: Raleway, sans-serif; }
+  font-family: 'Didact Gothic', sans-serif; }
 
 body.platform-android {
-  font-family: Raleway, sans-serif; }
+  font-family: 'Didact Gothic', sans-serif; }
 
 .ionic-body.platform-android {
-  font-family: Raleway, sans-serif; }
+  font-family: 'Didact Gothic', sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .tab-item, input, button, select, textarea {
   font-family: inherit; }
