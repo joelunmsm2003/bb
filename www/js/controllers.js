@@ -22,7 +22,33 @@ function onNotification(e) {
 
 angular.module('app.controllers', ['ionic'])
 
-.constant('SENDER_ID', '36813805845')
+.run(function($ionicPlatform,$location) {
+  $ionicPlatform.ready(function() {
+    // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+  
+  var notificationOpenedCallback = function(jsonData) {
+    //alert('run: ' + JSON.stringify(jsonData));
+
+    $location.url('muestrasocia')
+
+
+  };
+
+  window.plugins.OneSignal
+    .startInit("6d06ccb5-60c3-4a76-83d5-9363fbf6b40a")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
+
+
+
+    
+  // Call syncHashedEmail anywhere in your app if you have the user's email.
+  // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+  // window.plugins.OneSignal.syncHashedEmail(userEmail);
+})
+  
+})
   
 .controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -131,6 +157,14 @@ function ($scope, $stateParams) {
 
 
 }])
+.controller('muestrasociaCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+
    
 .controller('detalleDelServicioCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function

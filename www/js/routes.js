@@ -29,6 +29,12 @@ angular.module('app.routes', ['ngStorage'])
       templateUrl: 'templates/pies.html',
       controller:'homeCtrl'
     })
+
+         .state('muestrasocia', {
+      url: '/muestrasocia',
+      templateUrl: 'templates/muestrasocia.html',
+      controller:'muestrasociaCtrl'
+    })
         .state('manos', {
       url: '/manos',
       templateUrl: 'templates/manos.html',
@@ -121,7 +127,7 @@ angular.module('app.routes', ['ngStorage'])
 
 
 
-  host='http://127.0.0.1:8000'
+  host='http://codigito.com:8000'
 
 
 
