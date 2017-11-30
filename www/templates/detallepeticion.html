@@ -1,0 +1,50 @@
+<ion-view title="Detalle del Servicio" id="page22">
+  
+  <ion-content padding="true" class="has-header">
+
+
+  <center><h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tienes una peticion</h4></center>
+
+<!--   <div class='row'>
+    <div class="col"></div>
+    <div class="col"><img src="img/hai.png" alt="" style='    background: #ef473a;
+    border-radius: 50%;'></div>
+    <div class="col"></div>
+  </div> -->
+    
+  
+  <h5 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">{{servicio.cliente__nombre}}</h5>
+
+  <div class="button-bar">
+  <a class="button button-assertive button-outline">Cancelar Servicio</a>
+  <a class="button button-assertive button-outline" ng-click='adicionar()'>Aceptar Servicio</a>
+</div>
+
+  <h5>Hora : {{servicio.dia__nombre}}</h5>
+  <h4> Dia:  {{servicio.fecha_inicio}}</h4>
+      
+
+
+    <div class="list">
+
+    <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()" ng-repeat="s in categorias">
+      <img src="" style='border-radius:50%' >
+     <h2>{{s.nombre}}</h2>
+     
+    </a>
+
+  </div>
+
+
+
+    
+
+<br>
+
+  
+
+
+
+  </ion-content>
+</ion-view>
+
