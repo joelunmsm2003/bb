@@ -25,13 +25,17 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Subcategoria)
 class SubCategoriaAdmin(admin.ModelAdmin):
-	list_display = ('id','nombre','categoria','precio')
-	list_editable = ('nombre','precio')
+	list_display = ('id','nombre','categoria','descripcion')
+	list_editable = ('nombre','descripcion')
 	list_filter = ('categoria__nombre',)
 
 	def categoria(self, obj):
 		return obj.nombre
 
+@admin.register(Portadaphoto)
+class PortadaphotoAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre')
+    list_editable = ('nombre',)
 
 
 @admin.register(Cliente)

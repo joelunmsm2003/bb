@@ -425,7 +425,7 @@ class Buscasocia(JSONWebTokenAuthMixin, View):
 
 def categoria(request):
 
-	c= Categoria.objects.all().values('id','nombre')
+	c= Categoria.objects.all().values('id','nombre','photo')
 
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
 
@@ -442,7 +442,7 @@ def subcategoria(request,categoria):
 		if c[i]['descripcion'] == None: c[i]['descripcion']= ''
 		if c[i]['precio'] == None: c[i]['precio']= ''
 
-		c[i]['descripcion']=c[i]['descripcion']+'<br> Costo: S/. '+str(c[i]['precio'])
+		c[i]['descripcion']=c[i]['descripcion']
 
 
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
@@ -457,7 +457,13 @@ def distrito(request):
 
 	return HttpResponse(c, content_type="application/json")
 
+def portadaphoto(request):
 
+	c= Portadaphoto.objects.all().values('id','nombre','photo')
+
+	c= simplejson.dumps(ValuesQuerySetToDict(c))
+
+	return HttpResponse(c, content_type="application/json")
 
 
 class Creacliente(JSONWebTokenAuthMixin, View):
