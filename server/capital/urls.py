@@ -46,5 +46,6 @@ urlpatterns = [
     url(r'^categoria/', 'app.views.categoria'),
     url(r'^distrito/', 'app.views.distrito'),
     url(r'^subcategoria/(\d+)', 'app.views.subcategoria'),
+    url(r'^portadaphoto/', 'app.views.portadaphoto'),
     url(r'^buscasocia/(\d+)',  Buscasocia.as_view()),
 ]

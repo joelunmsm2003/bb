@@ -37,6 +37,18 @@ class Subcategoria(models.Model):
         return self.nombre
 
 
+class Portadaphoto(models.Model):
+    nombre = models.CharField(max_length=1000,blank=True, null=True)
+    photo = models.FileField(upload_to='static',blank=True, null=True)
+
+
+    class Meta:
+        managed = True
+        verbose_name = 'Portada/Photo'
+
+    def __unicode__(self):
+        return self.nombre
+
 class Cliente(models.Model):
     nombre = models.CharField(max_length=1000,blank=True, null=True)
     apellido = models.CharField(max_length=1000,blank=True, null=True)
