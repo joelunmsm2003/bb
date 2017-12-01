@@ -80,15 +80,38 @@ class SociasubcategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Turnosocia)
 class TurnosociaAdmin(admin.ModelAdmin):
-	list_display = ('id','turno','sociasubcategoria','fecha_inicio','fecha_fin')
+	list_display = ('id','turno','socia','fecha_inicio','fecha_fin','dia')
 
 	
 	def turno(self, obj):
 		return obj.turno.nombre
 
-	def sociasubcategoria(self, obj):
-		return obj.sociasubcategoria.socia.nombre
+	def socia(self, obj):
+		return obj.socia.nombre
 
+
+@admin.register(Clientesocias)
+class ClientessociasAdmin(admin.ModelAdmin):
+	list_display = ('id','cliente','socia')
+
+	
+	def cliente(self, obj):
+		return obj.cliente.nombre
+
+	def socia(self, obj):
+		return obj.socia.nombre
+
+
+@admin.register(Sociadistrito)
+class SociadistritoAdmin(admin.ModelAdmin):
+	list_display = ('socia','distrito')
+
+	
+	def socia(self, obj):
+		return obj.socia.nombre
+
+	def distrito(self, obj):
+		return obj.distrito.nombre
 
 
 

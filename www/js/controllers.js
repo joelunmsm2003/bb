@@ -22,14 +22,161 @@ function onNotification(e) {
 
 angular.module('app.controllers', ['ionic'])
 
-.constant('SENDER_ID', '36813805845')
+.run(function($ionicPlatform,$location,$http) {
+  $ionicPlatform.ready(function() {
+    // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
   
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+  var notificationOpenedCallback = function(jsonData) {
+    alert('run: ' + JSON.stringify(jsonData));
+
+
+        data = JSON.stringify(jsonData)
+        var todo ={
+
+          'data':data
+        }
+
+      $.post(host+'/guardanotificacion/', function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+
+      $.post(host+'/guardanotificacion/', {info: todo}, function(result){
+        $("span").html(result);
+    });
+
+
+
+
+    
+
+        $http({
+
+            url: host+'/guardanotificacion/',
+            data: todo,
+            method: 'POST'
+            }).
+            success(function(data) {
+
+
+           })
+
+
+   //$location.url('detallepeticion')
+
+    
+
+
+  };
+
+  window.plugins.OneSignal
+    .startInit("6d06ccb5-60c3-4a76-83d5-9363fbf6b40a")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
+
+
+
+    
+  // Call syncHashedEmail anywhere in your app if you have the user's email.
+  // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+  // window.plugins.OneSignal.syncHashedEmail(userEmail);
+})
+  
+})
+  
+.controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams,$http,$localStorage,$location) {
+
+
+    if($localStorage.token){
+
+      $location.url('home')
+
+
+    }
+
+
+     function urlBase64Decode(str) {
+        var output = str.replace('-', '+').replace('_', '/');
+        switch (output.length % 4) {
+            case 0:
+                break;
+            case 2:
+                output += '==';
+                break;
+            case 3:
+                output += '=';
+                break;
+            default:
+                throw 'Illegal base64url string!';
+        }
+        return window.atob(output);
+    }
+
+    function getUserFromToken() {
+        var token = $localStorage.token;
+        var user = {};
+        if (typeof token !== 'undefined') {
+            var encoded = token.split('.')[1];
+            user = JSON.parse(urlBase64Decode(encoded));
+        }
+        return user;
+    }
+
+    $scope.logeandose=0
+
+
+
+    
 
     $scope.ola ='sjsjs'
+
+    $scope.ingresar = function(data){
+
+               $http({
+
+            url: host+'/api-token-auth/',
+            data: data,
+            method: 'POST'
+            }).
+            success(function(data) {
+
+            console.log(data)
+            
+            $localStorage.token = data.token;
+
+            var currentUser = getUserFromToken();
+
+            if($localStorage.token){
+
+                console.log('ingrese...')
+
+                $location.url('home')
+
+                $scope.logeandose=0
+
+                $scope.errors=''
+
+
+
+            }
+
+
+           })
+            .error(function(data){
+
+              console.log(data.errors.__all__)
+
+              $scope.errors = data.errors.__all__
+
+              $scope.logeandose=0
+
+
+            })
+
+    }
 
 
 
@@ -43,6 +190,31 @@ function ($scope, $stateParams) {
 
 
 }])
+
+
+
+.controller('detallepeticionCtrl', ['$scope', '$stateParams','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams,$http) {
+
+
+  console.log($stateParams.servicio)
+
+  $http.get(host+"/servicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response});
+
+
+
+}])
+
+.controller('muestrasociaCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
+
+}])
+
    
 .controller('detalleDelServicioCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
@@ -69,21 +241,78 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('manosCtrl', ['$scope', '$stateParams','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('confirmacionCtrl', ['$scope','$stateParams','$http','$location','$ionicPopover', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope,$stateParams,$http,$location) {
 
 
+$scope.confirmacion = $stateParams
+
+t = new Date(5*60*60*1000)
+
+var x = new Date($scope.confirmacion.reserva.hora-t)
+
+console.log('xxx',x)
+
+$scope.dia =JSON.stringify($scope.confirmacion.reserva.dia).substring(1,11)
+
+$scope.hora =JSON.stringify(x).substring(12,20)
+
+var todo={
+
+    'pedido':$stateParams.pedido,
+    'reserva':$stateParams.reserva
+}
+
+$http({
+
+  url: host+'/buscasocia/0',
+  data: todo,
+  method: 'POST'
+  }).
+  success(function(data) {
+
+  console.log(data)
+  
+
+
+ })
+
+$scope.adicionar = function(data){
+
+  console.log('data...')
+  $location.url('manos')
+
+
+}
 
 
 
 }])
+
+
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter) {
+
+
+console.log('$stateParams',$stateParams.servicio)
+
+$scope.servicios = $stateParams.servicio
+
+
+$scope.pedidos=$filter('filter')($scope.servicios,{"check" : true})
+
+
+console.log('pedidos',$scope.pedidos)
+
+
+
+
+
     
 $http.get(host+"/categoria/").success(function(response) {$scope.categoria=response});
 
@@ -107,22 +336,48 @@ $scope.check=false
 
 $scope.book = 0
 
+$scope.precio =0
+
+$scope.totalpedido =[]
+
 $scope.selec=function(data){
 
     console.log('hdhdh',data)
 
+    $scope.totalpedido.push(data)
+
     data.check=true
 
     $scope.book=$scope.book+1
+
+    $scope.precio =$scope.precio +data.precio
+
+    console.log('selec..',$scope.totalpedido)
 }
 
-$scope.deselec=function(data){
+$scope.deselec=function(data,index){
 
-    console.log('hdhdh',data)
+
+
+  for (var i =0; i < $scope.totalpedido.length; i++){
+
+    if($scope.totalpedido[i].nombre === $filter('filter')($scope.totalpedido,{"nombre" : data.nombre})[0].nombre){
+
+       $scope.totalpedido.splice(i,1);
+       break;
+    }
+
+  }
+
+
 
     data.check=false
 
     $scope.book=$scope.book-1
+
+    $scope.precio =$scope.precio -data.precio
+
+    console.log($scope.totalpedido)
 }
 
 
@@ -256,4 +511,4 @@ function ($scope, $stateParams) {
 
 
 }])
- 
+

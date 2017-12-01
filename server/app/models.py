@@ -27,6 +27,7 @@ class Subcategoria(models.Model):
     nombre = models.CharField(max_length=1000)
     categoria = models.ForeignKey(Categoria,blank=True, null=True)
     precio = models.FloatField(blank=True, null=True)
+    descripcion = models.TextField(max_length=1000,blank=True, null=True)
 
     class Meta:
         managed = True
@@ -37,8 +38,13 @@ class Subcategoria(models.Model):
 
 
 class Cliente(models.Model):
-    nombre = models.CharField(max_length=1000)
+    nombre = models.CharField(max_length=1000,blank=True, null=True)
+    apellido = models.CharField(max_length=1000,blank=True, null=True)
+    edad = models.CharField(max_length=1000,blank=True, null=True)
+    telefono = models.CharField(max_length=1000,blank=True, null=True)
+    email = models.CharField(max_length=1000,blank=True, null=True)
     user = models.ForeignKey(User,blank=True, null=True)
+    numero_notificacion = models.CharField(max_length=1000, blank=True, null=True)
 
     class Meta:
         managed = True
@@ -70,6 +76,7 @@ class Socia(models.Model):
     texperiencia = models.IntegerField(blank=True, null=True)
     photo = models.FileField(upload_to='static',blank=True, null=True)
     ncuenta = models.CharField(max_length=1000, blank=True, null=True)
+    numero_notificacion = models.CharField(max_length=1000, blank=True, null=True)
  
     class Meta:
         managed = True
@@ -86,12 +93,40 @@ class Sociasubcategoria(models.Model):
     subcategoria = models.ForeignKey(Subcategoria,blank=True, null=True)
 
 
+
     class Meta:
         managed = True
         verbose_name = 'Socia/Especialidad'
 
     def __unicode__(self):
         return self.socia.nombre+'/'+self.subcategoria.nombre
+
+class Clientesocias(models.Model):
+    socia = models.ForeignKey(Socia,blank=True, null=True)
+    cliente = models.ForeignKey(Cliente,blank=True, null=True)
+
+
+
+    class Meta:
+        managed = True
+        verbose_name = 'Clientes/Socias'
+
+    def __unicode__(self):
+        return self.socia.nombre+'/'+self.cliente.nombre
+
+   
+class Sociadistrito(models.Model):
+    socia = models.ForeignKey(Socia,blank=True, null=True)
+    distrito = models.ForeignKey(Distrito,blank=True, null=True)
+
+    class Meta:
+        managed = True
+        verbose_name = 'Socia/Distrito'
+
+    def __unicode__(self):
+        return self.socia.nombre+'/'+self.distrito.nombre
+
+
 
 class Opcion(models.Model):
     sociasubcategoria = models.ForeignKey(Sociasubcategoria,blank=True, null=True)
@@ -177,11 +212,11 @@ class Notificacion(models.Model):
 
 
 class Turnosocia(models.Model):
-    sociasubcategoria = models.ForeignKey(Sociasubcategoria,blank=True, null=True)
     turno = models.ForeignKey(Turno,max_length=1000,blank=True, null=True)
+    socia = models.ForeignKey(Socia,blank=True, null=True)
     fecha_inicio = models.TimeField(blank=True, null=True)
     fecha_fin = models.TimeField(blank=True, null=True)
-    dia = models.DateField(blank=True, null=True)
+    dia = models.ForeignKey(Dia,blank=True, null=True)
     
 
     class Meta:
@@ -189,7 +224,7 @@ class Turnosocia(models.Model):
         verbose_name = 'Turno/Socia'
 
     def __unicode__(self):
-        return self.sociasubcategoria.socia.nombre+'/'+self.turno.nombre
+        return self.turno.nombre
 
 
 # class Estructura(models.Model):

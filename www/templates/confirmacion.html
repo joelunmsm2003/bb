@@ -4,7 +4,7 @@
 
   <h3 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">GENIAL !</h3>
 
-  <h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tu servicio ha sido programado</h4>
+  <center><h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tu servicio ha sido programado</h4></center>
 
   <div class='row'>
     <div class="col"></div>
@@ -12,33 +12,39 @@
     border-radius: 50%;'></div>
     <div class="col"></div>
   </div>
+    
   
   <h5 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tu manicurista esta por definirse</h5>
+
+  <div class="button-bar">
+  <a class="button button-assertive button-outline">Cancelar Servicio</a>
+  <a class="button button-assertive button-outline" ng-click='adicionar()'>Adicionar Servicio</a>
+</div>
+
+
+  <h4> Dia:  {{dia}}</h4>
+        <h5>Hora : {{hora}}</h5>
 
 
     <div class="list">
 
-    <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()">
+    <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()" ng-repeat="s in confirmacion.pedido">
       <img src="" style='border-radius:50%' >
-     <h2>Manos</h2>
-        <p>Lunes 20 Nov 6:40</p>
+     <h2>{{s.nombre}}</h2>
+     
     </a>
 
+  </div>
+
+
+
     
-      <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()">
-      <img src="" style='border-radius:50%' >
-     <h2>Pies</h2>
-        <p>Lunes 20 Nov 7:40</p>
-    </a>
 
 <br>
 
-  <div class="button-bar">
-  <a class="button button-assertive button-outline">Cancelar Servicio</a>
-  <a class="button button-assertive button-outline">Adicionar Servicio</a>
-</div>
+  
 
-</div>
+
 
   </ion-content>
 </ion-view>

@@ -1,6 +1,6 @@
-angular.module('app.routes', [])
+angular.module('app.routes', ['ngStorage'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -29,6 +29,17 @@ angular.module('app.routes', [])
       templateUrl: 'templates/pies.html',
       controller:'homeCtrl'
     })
+
+         .state('muestrasocia', {
+      url: '/muestrasocia',
+      templateUrl: 'templates/muestrasocia.html',
+      controller:'muestrasociaCtrl'
+    })
+          .state('detallepeticion', {
+      url: '/detallepeticion/:servicio',
+      templateUrl: 'templates/detallepeticion.html',
+      controller:'detallepeticionCtrl'
+    })
         .state('manos', {
       url: '/manos',
       templateUrl: 'templates/manos.html',
@@ -37,7 +48,10 @@ angular.module('app.routes', [])
         .state('home', {
       url: '/home',
       templateUrl: 'templates/home.html',
-      controller:'homeCtrl'
+      controller:'homeCtrl',
+      params: {
+        servicio: null
+      }
 
     })
         .state('intro', {
@@ -46,7 +60,12 @@ angular.module('app.routes', [])
     })
          .state('confirmacion', {
       url: '/confirmacion',
-      templateUrl: 'templates/confirmacion.html'
+      templateUrl: 'templates/confirmacion.html',
+      controller:'confirmacionCtrl',
+      params: {
+        pedido: null,
+        reserva:null
+      }
     })
         .state('resultados', {
       url: '/resultados',
@@ -55,7 +74,10 @@ angular.module('app.routes', [])
         .state('reservar', {
       url: '/reservar',
       templateUrl: 'templates/reservar.html',
-      controller:'homeCtrl'
+      controller:'homeCtrl',
+      params: {
+        servicio: null
+      }
     })
         .state('detalleDeLaOpcion', {
       url: '/page13',
@@ -106,9 +128,40 @@ angular.module('app.routes', [])
 
     ;
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
+
+
 
   host='http://codigito.com:8000'
+
+
+
+  //Django Auth JWT 
+
+  $httpProvider.defaults.headers.post['Accept'] = 'application/json, text/javascript'; 
+
+  $httpProvider.defaults.headers.post['Content-Type'] = 'multipart/form-data; charset=utf-8';
+
+
+
+  $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+        return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.token) {
+                        config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                    }
+                    return config;
+                },
+                'responseError': function(response) {
+                    if(response.status === 401 || response.status === 403) {
+                        $location.path('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
+
+
 
 });
