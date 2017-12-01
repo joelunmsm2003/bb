@@ -400,6 +400,16 @@ if($stateParams.categoria=='podologia'){
 });
 
 
+$http.get(host+"/subcategoria/5").success(function(response) {$scope.masajes=response
+
+if($stateParams.categoria=='masajes'){
+
+  $scope.servicios = $scope.masajes
+
+}
+
+});
+
 
 
 
