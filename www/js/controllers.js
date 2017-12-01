@@ -22,15 +22,49 @@ function onNotification(e) {
 
 angular.module('app.controllers', ['ionic'])
 
-.run(function($ionicPlatform,$location) {
+.run(function($ionicPlatform,$location,$http) {
   $ionicPlatform.ready(function() {
     // Enable to debug issues.
   // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
   
   var notificationOpenedCallback = function(jsonData) {
-    //alert('run: ' + JSON.stringify(jsonData));
+    alert('run: ' + JSON.stringify(jsonData));
 
-    $location.url('muestrasocia')
+
+        data = JSON.stringify(jsonData)
+        var todo ={
+
+          'data':data
+        }
+
+      $.post(host+'/guardanotificacion/', function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+
+      $.post(host+'/guardanotificacion/', {info: todo}, function(result){
+        $("span").html(result);
+    });
+
+
+
+
+    
+
+        $http({
+
+            url: host+'/guardanotificacion/',
+            data: todo,
+            method: 'POST'
+            }).
+            success(function(data) {
+
+
+           })
+
+
+   //$location.url('detallepeticion')
+
+    
 
 
   };
@@ -62,7 +96,6 @@ function ($scope, $stateParams,$http,$localStorage,$location) {
 
 
     }
-
 
 
      function urlBase64Decode(str) {
@@ -157,6 +190,23 @@ function ($scope, $stateParams) {
 
 
 }])
+
+
+
+.controller('detallepeticionCtrl', ['$scope', '$stateParams','$http', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams,$http) {
+
+
+  console.log($stateParams.servicio)
+
+  $http.get(host+"/servicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response});
+
+
+
+}])
+
 .controller('muestrasociaCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName

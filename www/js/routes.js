@@ -35,6 +35,11 @@ angular.module('app.routes', ['ngStorage'])
       templateUrl: 'templates/muestrasocia.html',
       controller:'muestrasociaCtrl'
     })
+          .state('detallepeticion', {
+      url: '/detallepeticion/:servicio',
+      templateUrl: 'templates/detallepeticion.html',
+      controller:'detallepeticionCtrl'
+    })
         .state('manos', {
       url: '/manos',
       templateUrl: 'templates/manos.html',
