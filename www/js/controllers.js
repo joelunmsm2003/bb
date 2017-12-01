@@ -293,15 +293,23 @@ $scope.adicionar = function(data){
 
 
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location) {
 
 
-console.log('$stateParams',$stateParams.servicio)
+console.log('$stateParams',$stateParams.categoria)
 
 $scope.servicios = $stateParams.servicio
+
+$scope.traemanos = function(){
+
+
+  $location.path('/menucliente/manos')
+
+
+}
 
 
 $scope.pedidos=$filter('filter')($scope.servicios,{"check" : true})
@@ -310,9 +318,39 @@ $scope.pedidos=$filter('filter')($scope.servicios,{"check" : true})
 console.log('pedidos',$scope.pedidos)
 
 
+$scope.host = host
+
+///Slider
+
+
+$scope.options = {
+  loop: true,
+  effect: 'fade',
+  speed: 1000
+}
+
+$scope.$on("$ionicSlides.sliderInitialized", function(event, data){
+  // data.slider is the instance of Swiper
+  $scope.slider = data.slider;
+});
+
+$scope.$on("$ionicSlides.slideChangeStart", function(event, data){
+  console.log('Slide change is beginning');
+});
+
+$scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
+  // note: the indexes are 0-based
+  $scope.activeIndex = data.slider.activeIndex;
+  $scope.previousIndex = data.slider.previousIndex;
+});
+
+
+//Fin Slider
 
 
 
+
+$http.get(host+"/portadaphoto/").success(function(response) {$scope.portadaphoto=response});
     
 $http.get(host+"/categoria/").success(function(response) {$scope.categoria=response});
 
@@ -320,15 +358,53 @@ $http.get(host+"/distrito/").success(function(response) {$scope.distrito=respons
 
 $http.get(host+"/subcategoria/1").success(function(response) {$scope.manos=response
 
-$scope.servicios = $scope.manos
+
+if($stateParams.categoria=='manos'){
+
+  $scope.servicios = $scope.manos
+
+}
+
+
 
 });
 
-$http.get(host+"/subcategoria/2").success(function(response) {$scope.pies=response});
+$http.get(host+"/subcategoria/2").success(function(response) {$scope.pies=response
 
-$http.get(host+"/subcategoria/3").success(function(response) {$scope.maquillaje=response});
+if($stateParams.categoria=='pies'){
 
-$http.get(host+"/subcategoria/4").success(function(response) {$scope.podologia=response});
+  $scope.servicios = $scope.pies
+
+}
+
+});
+
+$http.get(host+"/subcategoria/3").success(function(response) {$scope.maquillaje=response
+
+if($stateParams.categoria=='maquillaje'){
+
+  $scope.servicios = $scope.maquillaje
+
+}
+
+});
+
+$http.get(host+"/subcategoria/4").success(function(response) {$scope.podologia=response
+
+if($stateParams.categoria=='podologia'){
+
+  $scope.servicios = $scope.podologia
+
+}
+
+});
+
+
+
+
+
+
+
 
 $scope.descripcion = false
 

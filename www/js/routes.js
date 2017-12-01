@@ -41,10 +41,32 @@ angular.module('app.routes', ['ngStorage'])
       controller:'detallepeticionCtrl'
     })
         .state('manos', {
-      url: '/manos',
+      url: '/manos/:categoria',
       templateUrl: 'templates/manos.html',
-      controller:'homeCtrl'
+      controller:'homeCtrl',
+      params: {
+        categoria: null
+      }
     })
+
+
+    //        .state('menucliente', {
+    //   url: '/menucliente',
+    //   templateUrl: 'templates/menucliente.html'
+    // })
+
+    //        .state('menucliente.manos', {
+    //   url: '/manos',
+    //   views: {
+    //     'menucliente': {
+    //       templateUrl: 'templates/manos.html',
+    //       controller:'homeCtrl'
+    //     }
+    //   }
+    // })
+
+
+
         .state('home', {
       url: '/home',
       templateUrl: 'templates/home.html',
@@ -83,10 +105,7 @@ angular.module('app.routes', ['ngStorage'])
       url: '/page13',
       templateUrl: 'templates/detalleDeLaOpcion.html'
     })
-        .state('inicio', {
-      url: '/inicio',
-      templateUrl: 'templates/inicio.html'
-    })
+ 
 
 
     

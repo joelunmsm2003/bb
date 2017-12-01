@@ -3,37 +3,43 @@
     <button class="button button-icon icon No Icon"></button>
   </ion-nav-buttons>
   <ion-content padding="false" class="manual-ios-statusbar-padding">
-    <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider2" delegate-handle="slider2" id="bellezaExpress-slider2" style="width:100%;height:220px;" class="slide1">
-      <ion-slide-page id="bellezaExpress-slide28" style="background:url(&quot;img/ElluU7tWRiSv4zCKC7ak_58dc97cbd40b3.jpeg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-      <ion-slide-page id="bellezaExpress-slide21" style="background:url(&quot;img/wgODjy1FQyaiRgwHZsAA_cosmetologia3.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
+
+
+
+
+    <ion-slides  disable-side-menu-drag="" slider="slider2" auto-play=true delegate-handle="slider2" id="bellezaExpress-slider2" style="width:100%;height:220px;" class="slide1">
+
+
+
+      <ion-slide-page ng-repeat='p in portadaphoto' id="{{p.photo}}" style="background:url({{host}}/{{p.photo}}) no-repeat center;background-size:cover;"></ion-slide-page>
+
+
+
     </ion-slides>
+
+
+
+
     <form id="bellezaExpress-form36" class="list search1">
       
-      <div id="bellezaExpress-markdown12" style="text-align:center;" class="show-list-numbers-and-dots titulo">
-        <p style="color:#000000;font-size:35px;">{{categoria[0].nombre}}</p>
-      </div>
-      <div>
-        <a style="display:block;" ui-sref="manos()">
-          <img src="img/6tVUiNIjRl2bqLpqXgma_nails-opi-01.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+
+        <a style="display:block;" ui-sref="manos({categoria: 'manos'})">
+          <img src="{{host}}/{{categoria[0].photo}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
         </a>
       </div>
       <div class="spacer" style="width: 320px; height: 3px;"></div>
     </form>
-    <div id="bellezaExpress-markdown13" class="show-list-numbers-and-dots titulo2">
-      <p style="color:#000000;font-size:35px;">{{categoria[1].nombre}}</p>
-    </div>
+  
     <div>
-      <a style="display:block;" ui-sref="manos()">
-        <img src="img/HNwAQUubRcaao13WPyIB_laser-hair-removal-idaho-falls-silky-sexy.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      <a style="display:block;" ui-sref="manos({categoria:'pies' })">
+        <img src="{{host}}/{{categoria[1].photo}}"  style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
       </a>
     </div>
     <div class="spacer" style="width: 320px; height: 5px;"></div>
-    <div id="bellezaExpress-markdown14" class="show-list-numbers-and-dots titulo3">
-      <p style="color:#000000;font-size:35px;">{{categoria[2].nombre}}</p>
-    </div>
+   
     <div>
-      <a style="display:block;" ui-sref="manos()">
-        <img src="img/BZRcawKeR9SYxjiQGkTB_Blue-Eyes-Makeup-01.jpg" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
+      <a style="display:block;" ui-sref="manos({categoria: 'maquillaje'})">
+        <img src="{{host}}/{{categoria[2].photo}}" style="display: block; width: 100%; height: auto; margin-left: auto; margin-right: auto;">
       </a>
     </div>
 
