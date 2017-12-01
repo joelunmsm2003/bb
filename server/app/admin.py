@@ -46,10 +46,6 @@ class DistritoAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(Dia)
-class DistritoAdmin(admin.ModelAdmin):
-    list_display = ('id','nombre')
-    list_editable = ('nombre',)
 
 @admin.register(Turno)
 class DistritoAdmin(admin.ModelAdmin):
