@@ -9,15 +9,6 @@
 
 
 
-function onNotification(e) {
-  switch(e.event){
-    case 'registered':
-      if (e.regid.length > 0){
-        ref.child("users/" + btoa("martinpeveri@gmail.com")).update({gcm_id: e.regid});
-      }
-      break;
-  }
-}
 
 
 angular.module('app.controllers', ['ionic'])
@@ -292,14 +283,29 @@ $scope.adicionar = function(data){
 }])
 
 
-   
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('pruebaCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$location','$ionicSideMenuDelegate',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$location,$ionicSideMenuDelegate) {
 
 
-console.log('$stateParams',$stateParams.categoria)
+console.log('prueba')
+
+
+}])
+
+   
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate) {
+
+
+  $scope.toggleLeft = function() {
+
+    console.log('shhsh')
+    $ionicSideMenuDelegate.toggleLeft();
+  };
 
 $scope.servicios = $stateParams.servicio
 
@@ -467,64 +473,8 @@ $scope.deselec=function(data,index){
 }
 
 
-///GCM
 
        
-        $scope.register = function(){
-           try {
-             var pushNotification = window.plugins.pushNotification;
-             pushNotification.register(successHandler, errorHandler, {"senderID": SENDER_ID, "ecb":"onNotification"});
-          } catch (e){
-             console.log(e);
-          }
-        }
-
-
-         $scope.send = function(){
-
-                    //Cargo el mensaje
-                      var msg = {
-                          'message': "Yaeeeee",
-                          'title': "MyApp",
-                          'vibrate': 1,
-                          'sound': 1,
-                      };
-             
-                      var data = {
-                          'registration_ids': 1,
-                          'data': msg
-                      };
-             
-                      //Envio las notificaciones
-                      $http({
-                        url: 'http://localhost/gcm.php',
-                        method: 'jsonp',
-                        params: {data: data}
-                      })
-                      .then(function(response) {
-                         console.log(response);
-                      });
-
-
-
-            }
- 
-        /**
-        * @name successHandler
-        * @desc Success register notification push
-        */
-        function successHandler (result) {
-          console.log(result);
-        }
- 
-        /**
-        * @name errorHandler
-        * @desc Error register notification push
-        */
-        function errorHandler (error) {
-          console.log(error);
-        }
-
 
 
 

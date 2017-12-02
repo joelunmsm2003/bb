@@ -24,6 +24,13 @@ angular.module('app.routes', ['ngStorage'])
       templateUrl: 'templates/maquillaje.html',
       controller:'homeCtrl'
     })
+
+       .state('prueba', {
+      url: '/prueba',
+      templateUrl: 'templates/prueba.html',
+      controller:'pruebaCtrl'
+    })
+
         .state('pies', {
       url: '/pies',
       templateUrl: 'templates/pies.html',
