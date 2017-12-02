@@ -283,23 +283,32 @@ $scope.adicionar = function(data){
 }])
 
 
-.controller('pruebaCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$location','$ionicSideMenuDelegate',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('sociaCtrl', ['$scope','$http','$filter',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter,$location,$ionicSideMenuDelegate) {
+function ($scope,$http,$filter) {
 
 
-console.log('prueba')
+console.log('socia')
 
 
 }])
 
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate','$localStorage',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage) {
 
+$scope.salir=function(){
+
+  console.log('hdhdh')
+
+  delete $localStorage.token
+
+  $location.path('/login');
+
+}
 
   $scope.toggleLeft = function() {
 
@@ -309,13 +318,6 @@ function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegat
 
 $scope.servicios = $stateParams.servicio
 
-$scope.traemanos = function(){
-
-
-  $location.path('/menucliente/manos')
-
-
-}
 
 
 $scope.pedidos=$filter('filter')($scope.servicios,{"check" : true})

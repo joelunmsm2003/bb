@@ -112,30 +112,42 @@ angular.module('app.routes', ['ngStorage'])
       url: '/page13',
       templateUrl: 'templates/detalleDeLaOpcion.html'
     })
+
+
+
+        .state('socia', {
+      url: '/socia',
+      templateUrl: 'templates/socia.html',
+      controller:'homeCtrl'
+
+    })
+
+
+
  
 
 
     
 
         .state('menu', {
-      url: '/menu',
+      url: '/side-menu',
       templateUrl: 'templates/menu.html'
     })
 
-        .state('menu.socia', {
-      url: '/socia',
-      views: {
-        'menu': {
-          templateUrl: 'templates/socia.html',
-          controller:'homeCtrl'
-        }
-      }
-    })
+    //     .state('menu.socia', {
+    //   url: '/socia',
+    //   views: {
+    //     'side-menu': {
+    //       templateUrl: 'templates/socia.html',
+    //       controller:'sociaCtrl'
+    //     }
+    //   }
+    // })
 
             .state('menu.perfil', {
       url: '/perfil',
       views: {
-        'menu': {
+        'side-menu': {
           templateUrl: 'templates/perfil.html',
           controller:'homeCtrl'
         }

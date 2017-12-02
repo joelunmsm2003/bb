@@ -1,46 +1,145 @@
 
 
+<ion-view title="Belleza Express"  hide-nav-bar="false" id="page11">
 
 
-<ion-view title="Servicios" id="menu" style="" scroll='true' >
 
-  
+
+  <ion-nav-buttons side="left">
+   
+     <button class = "button button-icon icon ion-navicon" ng-click = "toggleLeft()"></button>
+
+  </ion-nav-buttons>
+
+
+  <ion-side-menus>
+  <!-- Left menu -->
+            <ion-side-menu side="left"><ion-content padding="false" style="top:0px !important;" class="side-menu-left sider-menu">
+                <div class="spacer" style="width: 268px; height: 41px;"></div>
+                <div class="profile-menu">
+                  <img src="img/c9IGoL3cR2KasOEdhEFr_original-tar-style-el-estilo-de-gafas-de-sol-famosas-9583182-4-esl-es-las-gafas-de-sol-de-las-celebrities-jpg.jpg" style="display: block; width: 60%; height: auto; margin-left: auto; margin-right: auto;">
+                </div>
+                <h1 id="menu-heading4" style="color:#FFFFFF;font-weight:300;text-align:center;">Ana Maria </h1>
+                <div class="spacer" style="width: 268px; height: 29px;"></div>
+                <ion-list id="menu-list6">
+                  <ion-item ui-sref="menu.perfil()" menu-close="" class="item-icon-left dark side-menu" id="menu-list-item17">
+                      Mi Perfil</ion-item>
+                  <ion-item  ui-sref="menu.socia()" menu-close="" class="item-icon-left dark side-menu"  id="menu-list-item71" >
+                    Servicios</ion-item>
+                  <ion-item class="item-icon-left dark side-menu" id="menu-list-item73">
+                   Mis Clientes</ion-item>
+                  <ion-item class="item-icon-left side-menu" menu-close="" ng-click='salir()' id="menu-list-item20">
+                  Salir</ion-item>
+                </ion-list>
+                <div class="spacer" style="height: 100px;"></div>
+                <div class="spacer" style="height: 100px;"></div>
+                <div class="spacer" style="height: 100px;"></div>
+                
+              </ion-content>
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+
+    
+<ion-nav-bar class="bar-dark nav-bar-container" nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
+      <ion-nav-back-button class="show"></ion-nav-back-button>
+    <div class="nav-bar-block" nav-bar="cached"><ion-header-bar class="bar-dark bar bar-header has-tabs-top" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="title title-center header-item"></div></ion-header-bar></div><div class="nav-bar-block" nav-bar="active"><ion-header-bar class="bar-dark bar bar-header has-tabs-top" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="buttons buttons-left"><span class="left-buttons">
+   
+     <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+
+  </span></div><div class="title title-center header-item" style="left: 57px; right: 57px;">Belleza Express</div></ion-header-bar></div></ion-nav-bar>
+
+    <ion-content padding="false" class="manual-ios-statusbar-padding">
+
+
+
   <div class="tabs-striped tabs-top tabs-background-dark tabs-color-light">
     <div class="tabs">
       <a class="tab-item" ng-click='servicios=manos' ng-class="{active: servicios==manos}" >
-        <img src="img/manicure.png" style='max-width: 12px;'>
-        <span class='icon-servicios'>Manicure</span>
+      
+        <span class='icon-servicios'>Manos</span>
       </a>
-      <a class="tab-item" ng-class="{active: servicios==pies}" >
-        <img src="img/manicure-scissors.png" style='max-width: 12px;'>
-        <span class='icon-servicios' ng-click='servicios=pies'>Pedicure</span>
+      <a class="tab-item" ng-click='servicios=pies' ng-class="{active: servicios==pies}" >
+   
+        <span class='icon-servicios' >Pies</span>
       </a>
-      <a class="tab-item" ng-class="{active: servicios==maquillaje}" >
-        <img src="img/make-up-brush.png" style='max-width: 12px;'>
-        <span class='icon-servicios' ng-click='servicios=maquillaje'>Maquillaje</span>
+      <a ng-click='servicios=maquillaje' class="tab-item" ng-class="{active: servicios==maquillaje}" >
+  
+        <span class='icon-servicios' >Maquillaje</span>
       </a>
+
+      <a ng-click='servicios=podologia' class="tab-item" ng-class="{active: servicios==podologia}" >
+
+        <span class='icon-servicios' >Podologia</span>
+      </a>
+
+
+
     </div>
   </div>
 
-      <div class="spacer" style="width: 268px; height: 81px;"></div>
 
-<h3 id="seguimiento-heading15" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Escoja un servicio</h3>
+
  
- <div class="list list-inset">
-    <div class="item" ng-repeat='s in servicios'  ui-sref="formularioservicio({servicio:'{{s.nombre}}'})" >
-      {{s.nombre}}
-    </div>
+<div class="list">
+
+  <div ng-repeat = 'm in servicios'>
+  <div class="item item-icon-left item-icon-right"  ng-model="m.value" >
+
+    <i class="icon ion-ios-plus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-hide='descripcion' ng-click='selecciona(m);descripcion=true'></i>
+
+    <i class="icon ion-ios-minus-outline"  style='max-height: 51px;color:#a0a0a0;' ng-show='descripcion' ng-click='selecciona(m);descripcion=false'></i>
+
+    {{m.nombre}} 
+
+    <span style='position: absolute;
+    right: 64px;
+'>S/. {{m.precio}} </span>
+   
+ 
+
+
+
+     <i class="icon ion-ios-checkmark" ng-if='m.check===true;' style='max-height: 51px;' ng-model='m.check' ng-click="deselec(m,$index)"></i>
+
+     <i class="icon ion-ios-checkmark-outline" ng-if='m.check===false;' style='max-height: 51px;' ng-model='m.check' ng-click="selec(m,$index)"></i>
+
+
+
+  </div>
+
+  <p ng-show='descripcion' class='detallesubcategoria' ng-bind-html="m.descripcion"> 
+
+
+             
+
+        </p>
+
+
+  </div>
+
+
 </div>
 
+    
 
 
 
-<style type="text/css">
+  </ion-content>
   
-  .icon-servicios{
 
-    padding-top:12px;
-  }
-</style>
+
+
+  </ion-side-menu-content>
+
+  <!-- Right menu -->
+  <ion-side-menu side="right">
+  </ion-side-menu>
+
+</ion-side-menus>
+
+
+
+
 
 </ion-view>
