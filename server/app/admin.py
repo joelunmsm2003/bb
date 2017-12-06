@@ -49,6 +49,17 @@ class DistritoAdmin(admin.ModelAdmin):
     list_editable = ('nombre',)
 
 
+@admin.register(Dia)
+class DiaAdmin(admin.ModelAdmin):
+    list_display = ('id','nombre')
+
+@admin.register(Notificacion)
+class NotificacionAdmin(admin.ModelAdmin):
+    list_display = ('id','fecha','servicio')
+
+    def servicio(self, obj):
+		return '0'
+
 
 
 @admin.register(Turno)
@@ -84,11 +95,10 @@ class SociasubcategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Turnosocia)
 class TurnosociaAdmin(admin.ModelAdmin):
-	list_display = ('id','turno','socia','fecha_inicio','fecha_fin','dia')
+	list_display = ('id','socia','fecha_inicio','fecha_fin','dia')
+	list_filter=('socia__nombre','dia')
 
 	
-	def turno(self, obj):
-		return obj.turno.nombre
 
 	def socia(self, obj):
 		return obj.socia.nombre
