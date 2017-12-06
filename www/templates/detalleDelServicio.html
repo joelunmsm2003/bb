@@ -1,24 +1,51 @@
-<ion-view title="Detalle del Servicio" id="page5" >
-  <ion-nav-buttons side="right" class="has-header">
-    
-  </ion-nav-buttons>
-  <ion-content padding="false" class="has-header">
-    <ion-slides disable-side-menu-drag="" options="{'loop': true}" slider="slider3" delegate-handle="slider3" id="detalleDelServicio-slider3" style="width:100%;height:200px;">
-      <ion-slide-page id="detalleDelServicio-slide29" style="background:url(&quot;img/5lKUebKSZeOV3IS6pdN4_3050970e98f7aa527a2c933d6907e4eefd61eeb0.XL2.jpg&quot;) no-repeat center;background-size:cover;"></ion-slide-page>
-
-
-    </ion-slides>
-
-
-    <div id="detalleDelServicio-container11" class="busqueda">
-      <h3 id="detalleDelServicio-heading8" style="color:#000000;font-weight:300;">Manicure Express</h3>
-      <h4 id="detalleDelServicio-heading8" style="color:#000000;font-weight:300;">Servicios Adicionales</h4>
-      <div id="detalleDelServicio-markdown10" class="show-list-numbers-and-dots">
-        <p style="color:#000000;">Berta Rebeca</p>
-      </div>
-    </div>
-    
-     
+<ion-view title="Confirmacion" id="page22">
   
+  <ion-content padding="true" class="has-header">
+
+  <h3 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">GENIAL !</h3>
+
+  <center><h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tu servicio ha sido programado</h4></center>
+
+  <div class='row'>
+    <div class="col"></div>
+    <div class="col"><img src="img/hai.png" alt="" style='    background: #ef473a;
+    border-radius: 50%;'></div>
+    <div class="col"></div>
+  </div>
+    
+  
+  <h5 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tu manicurista esta por definirse</h5>
+
+  <div class="button-bar">
+  <a class="button button-assertive button-outline">Cancelar Servicio</a>
+  <a class="button button-assertive button-outline" ng-click='adicionar()'>Adicionar Servicio</a>
+</div>
+
+
+  <h4> Dia:  {{dia}}</h4>
+        <h5>Hora : {{hora}}</h5>
+
+
+    <div class="list">
+
+    <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()" ng-repeat="s in confirmacion.pedido">
+      <img src="" style='border-radius:50%' >
+     <h2>{{s.nombre}}</h2>
+     
+    </a>
+
+  </div>
+
+
+
+    
+
+<br>
+
+  
+
+
+
   </ion-content>
 </ion-view>
+

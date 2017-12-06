@@ -3,25 +3,44 @@
   <ion-content padding="true" class="has-header">
 
 
-  <center><h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">Tienes una peticion</h4></center>
+  <center><h4 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">{{servicio.cliente__nombre}} requiere tus servicios</h4></center>
 
-<!--   <div class='row'>
+   <div class='row'>
     <div class="col"></div>
-    <div class="col"><img src="img/hai.png" alt="" style='    background: #ef473a;
-    border-radius: 50%;'></div>
+    <div class="col"><img class='animated flipInX' src="{{host}}/{{servicio.cliente__photo}}" alt="" style='background: #ef473a;
+    border-radius: 50%; max-width: 181px;'></div>
     <div class="col"></div>
-  </div> -->
+  </div> 
     
-  
-  <h5 id="fichaDeCliente-heading18" style="color: rgb(0, 0, 0); font-weight: 300; text-align: center;">{{servicio.cliente__nombre}}</h5>
+  <div class="list">
+
+  <div ng-repeat = 'm in servicio.pedidos'>
+  <div class="item item-icon-left item-icon-right"  ng-model="m.value" >
+
+ 
+
+    {{m.subcategoria__nombre}} 
+
+    <span style='position: absolute;
+    right: 64px;
+'>S/. {{m.subcategoria__precio}} </span>
+   
+ 
+
+   
+
+  </div>
+	</div>
+
+	</div>
 
   <div class="button-bar">
   <a class="button button-assertive button-outline">Cancelar Servicio</a>
-  <a class="button button-assertive button-outline" ng-click='adicionar()'>Aceptar Servicio</a>
+  <a class="button button-assertive button-outline" ng-click='aceptarservicio(servicio)'>Aceptar Servicio</a>
 </div>
 
-  <h5>Hora : {{servicio.dia__nombre}}</h5>
-  <h4> Dia:  {{servicio.fecha_inicio}}</h4>
+  <h5>Dia : {{servicio.dia__nombre}}</h5>
+  <h4> Hora:  {{servicio.fecha_inicio}}</h4>
       
 
 

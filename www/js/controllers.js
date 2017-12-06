@@ -17,9 +17,6 @@ angular.module('app.controllers', ['ionic'])
   $ionicPlatform.ready(function() {
 
 
- 
-
-
 
 
 
@@ -39,7 +36,7 @@ angular.module('app.controllers', ['ionic'])
         }
 
 
-      $http({
+        $http({
 
             url: host+'/guardanotificacion/',
             data: todo,
@@ -47,8 +44,19 @@ angular.module('app.controllers', ['ionic'])
             }).
             success(function(data) {
 
-              alert(data)
-              $location.url('notificaciondeservicio/'+data)
+              console.log(data)
+            
+
+              if (data['detalle']=='cliente-socia'){
+
+                $location.url('notificaciondeservicio/'+data['servicio'])
+
+              }
+              if (data['detalle']=='socia-cliente'){
+
+                $location.url('detallepeticion/'+data['servicio'])
+
+              }
 
 
            })
@@ -195,7 +203,29 @@ function ($scope, $stateParams,$http) {
 
   $http.get(host+"/detalledeservicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response[0]});
 
+  $scope.host=host
 
+  $scope.aceptarservicio=function(data){
+
+
+
+
+   $http({
+
+            url: host+'/aceptarservicio/',
+            data: data,
+            method: 'POST'
+            }).
+            success(function(data) {
+
+           
+
+           })
+
+
+
+
+  }
 
 }])
 
@@ -229,6 +259,9 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+
+
+
     
 
 
