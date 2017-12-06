@@ -96,6 +96,15 @@ angular.module('app.routes', ['ngStorage'])
         reserva:null
       }
     })
+
+         .state('notificaciondeservicio', {
+      url: '/notificaciondeservicio/:servicio',
+      templateUrl: 'templates/notificaciondeservicio.html',
+      controller:'notificaciondeservicioCtrl',
+      params: {
+        servicio: null
+      }
+    })
         .state('resultados', {
       url: '/resultados',
       templateUrl: 'templates/resultados.html'

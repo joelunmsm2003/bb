@@ -5,7 +5,7 @@
 
 
 
-  <ion-nav-buttons side="left">
+  <ion-nav-buttons side="left" style='background-color: transparent !important;'>
    
      <button class = "button button-icon icon ion-navicon" ng-click = "toggleLeft()"></button>
 
@@ -43,16 +43,29 @@
  
 
 
-<ion-nav-bar class="bar-dark nav-bar-container" nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
-      <ion-nav-back-button class="show"></ion-nav-back-button>
-    <div class="nav-bar-block" nav-bar="cached"><ion-header-bar class="bar-dark bar bar-header" align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="title title-center header-item"></div></ion-header-bar></div><div class="nav-bar-block" nav-bar="active"><ion-header-bar class="bar-dark bar bar-header " align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="buttons buttons-left"><span class="left-buttons">
+<ion-nav-bar class="bar-dark nav-bar-container " nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
    
-     <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+    <div class="nav-bar-block " nav-bar="cached">
 
-  </span></div><div class="title title-center header-item" style="left: 57px; right: 57px;">Belleza Express</div></ion-header-bar></div></ion-nav-bar>
+    <ion-header-bar class="bar-dark bar bar-header" style='background-color: transparent !important;' align-title="center"><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="title title-center header-item"></div></ion-header-bar>
 
 
-     <ion-content padding="false" class="manual-ios-statusbar-padding">
+    </div>
+
+    <div class="nav-bar-block" nav-bar="active">
+
+      <ion-header-bar class="bar-dark bar bar-header " align-title="center" style='background-color: transparent !important;'><button ng-click="$ionicGoBack()" class="button back-button hide buttons  button-clear header-item"><i class="icon ion-ios-arrow-back"></i> <span class="back-text"></span></button><div class="buttons buttons-left"><span class="left-buttons">
+
+      <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+
+      </span></div><div class="title title-center header-item" style="left: 57px; right: 57px;">Belleza Express</div></ion-header-bar>
+
+      </div>
+
+</ion-nav-bar>
+
+
+     <ion-content padding="false" class="manual-ios-statusbar-padding" style='position: initial !important;'>
     <ion-slides  disable-side-menu-drag="" slider="slider2" auto-play=true delegate-handle="slider2" id="bellezaExpress-slider2" style="width:100%;height:220px;" class="slide1">
 
 
@@ -123,7 +136,16 @@
 
 </ion-side-menus>
 
+<style type="text/css">
+  
+  .transparente-bar{
+    background-color: transparent !important;
+  }
 
+ /* .bar.bar-dark {
+    border-color: transparent;
+}*/
+</style> 
 
 
 
