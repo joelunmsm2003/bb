@@ -55,6 +55,8 @@ import operator
 from django.db.models import Q
 
 import datetime
+import requests
+import json
 
 class Uploadphoto(JSONWebTokenAuthMixin, View):
 
@@ -356,6 +358,8 @@ class Buscasocia(JSONWebTokenAuthMixin, View):
 
 		data = json.loads(request.body)
 
+		print 'data',data
+
 		pedidos =[]
 
 		for p in data['pedido']:
@@ -400,17 +404,39 @@ class Buscasocia(JSONWebTokenAuthMixin, View):
 		if dia=='Sat': dia='Sabado'
 
 
+		if dia=='Sabado':ndia=6
+		if dia=='Viernes':ndia=5
+		if dia=='Jueves':ndia=4
+		if dia=='Miercoles':ndia=3
+		if dia=='Martes':ndia=2
+		if dia=='Lunes':ndia=1
+
+		cli = Cliente.objects.get(user_id=request.user.id).id
+
+
 		query = reduce(operator.and_, (Q(subcategoria__nombre__contains = item) for item in pedidos))
 		
 		#{u'pedido': [{u'descripcion': u'ghghg<br> Costo: S/. 2.0', u'nombre': u'Manicure Express', u'precio': 2, u'id': 1, u'check': True}, {u'descripcion': u'<br> Costo: S/. 2.0', u'nombre': u'Manicure Spa', u'precio': 2, u'id': 2, u'check': True}]}
 
 		sociascate=Sociasubcategoria.objects.filter(query)
 
-		print sociascate
+		Servicio(dia_id=ndia,fecha_inicio=hora_reserva,cliente_id=cli).save()
+
+		id_serv = Servicio.objects.all().values('id').order_by('-id')[0]['id']
+
+		##Guarda pedidos subcategorias
+
+		for p in data['pedido']:
+
+			Serviciopedido(servicio_id=id_serv,subcategoria_id=p['id']).save()
+
+
+
+
 
 		for s in sociascate:
 
-			if (Sociadistrito.objects.filter(distrito__nombre=ubicacion).count()>0):
+			if (Sociadistrito.objects.filter(socia_id=s.socia.id,distrito__nombre=ubicacion).count()>0):
 
 				t = Turnosocia.objects.filter(socia_id=s.socia.id,fecha_inicio__lte=hora_reserva,fecha_fin__gte=hora_reserva,dia__nombre=dia)
 
@@ -418,7 +444,15 @@ class Buscasocia(JSONWebTokenAuthMixin, View):
 
 				if t.count()>0:
 
-					print 'Enviando notificacion...'
+					print 'Enviando notificacion...',s.socia.nombre
+
+					header = {"Content-Type": "application/json; charset=utf-8","Authorization": "Basic OGQyNTllMmUtMmY2Ny00ZGQxLWEzNWMtMjM5NTdlNjM0ZTc3"}
+					payload = {"app_id": "6d06ccb5-60c3-4a76-83d5-9363fbf6b40a","include_player_ids": ["b228c867-34ec-49dc-8591-e810a898bd17"],"contents": {"en": "English Messag000e"},"data":{'servicio': id_serv}}
+					req = requests.post("https://onesignal.com/api/v1/notifications", headers=header, data=json.dumps(payload))
+					print(req.status_code, req.reason)
+ 
+
+					break
 
 		return HttpResponse(simplejson.dumps('cliente_id'), content_type="application/json")
 
@@ -426,6 +460,15 @@ class Buscasocia(JSONWebTokenAuthMixin, View):
 def categoria(request):
 
 	c= Categoria.objects.all().values('id','nombre','photo')
+
+	c= simplejson.dumps(ValuesQuerySetToDict(c))
+
+	return HttpResponse(c, content_type="application/json")
+
+
+def detalledeservicio(request,servicio):
+
+	c= Servicio.objects.filter(id=servicio).values('id','cliente__nombre','dia__nombre')
 
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
 
@@ -462,6 +505,22 @@ def portadaphoto(request):
 	c= Portadaphoto.objects.all().values('id','nombre','photo')
 
 	c= simplejson.dumps(ValuesQuerySetToDict(c))
+
+	return HttpResponse(c, content_type="application/json")
+
+
+
+@csrf_exempt
+def guardanotificacion(request):
+
+	if request.method == 'POST':
+
+		servicio= json.loads(json.loads(request.body)['data'])['notification']['payload']['additionalData']['servicio']
+
+
+		Notificacion(descripcion=json.loads(request.body),fecha=datetime.datetime.today(),servicio_id=servicio).save()
+
+	c= simplejson.dumps(servicio)
 
 	return HttpResponse(c, content_type="application/json")
 

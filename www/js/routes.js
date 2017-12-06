@@ -170,7 +170,7 @@ angular.module('app.routes', ['ngStorage'])
 
 
 
-  host='http://codigito.com:8000'
+  host='http://159.203.102.104:8000'
 
 
 

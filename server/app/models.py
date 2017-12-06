@@ -185,6 +185,7 @@ class Servicio(models.Model):
     notificacion_cuerpo= models.TextField(max_length=1000,blank=True)
     puntaje=models.IntegerField(blank=True, null=True)
     precio = models.FloatField(blank=True, null=True)
+    fecha = models.DateTimeField(blank=True, null=True)
 
 
     class Meta:
@@ -192,8 +193,13 @@ class Servicio(models.Model):
         verbose_name = 'Servicio'
 
     def __unicode__(self):
-        return self.socia.nombre+'/'+self.cliente.nombre
 
+        if self.socia:
+
+            return str(self.id)+'-'+self.socia.nombre+'-'+self.cliente.nombre
+        else:
+
+            return str(self.id)+'-'+'Sin asignar-'+self.cliente.nombre
 
 
 class Serviciopedido(models.Model):
@@ -206,7 +212,7 @@ class Serviciopedido(models.Model):
         verbose_name = 'Servicio / Pedido'
 
     def __unicode__(self):
-        return self.servicio+'/'+self.subcategoria.nombre
+        return self.subcategoria.nombre
 
 class Notificacion(models.Model):
 
@@ -219,12 +225,12 @@ class Notificacion(models.Model):
         verbose_name = 'Notificacion'
 
     def __unicode__(self):
-        return self.nombre
+        return self.descripcion
 
 
 
 class Turnosocia(models.Model):
-    turno = models.ForeignKey(Turno,max_length=1000,blank=True, null=True)
+
     socia = models.ForeignKey(Socia,blank=True, null=True)
     fecha_inicio = models.TimeField(blank=True, null=True)
     fecha_fin = models.TimeField(blank=True, null=True)
@@ -236,7 +242,7 @@ class Turnosocia(models.Model):
         verbose_name = 'Turno/Socia'
 
     def __unicode__(self):
-        return self.turno.nombre
+        return self.socia.nombre
 
 
 # class Estructura(models.Model):
