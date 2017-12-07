@@ -9799,6 +9799,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.homeheader {
+  background-color: transparent !important; }
+
 .fixed44 {
   bottom: 25px;
   text-align: center;

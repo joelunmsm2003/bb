@@ -4,6 +4,11 @@ $secundario: #1b1b1b;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "../www/lib/ionic/scss/ionic";
 
+  .homeheader{
+    background-color: transparent !important;
+  }
+
+
 .fixed44 {
 
     bottom: 25px;

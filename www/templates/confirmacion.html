@@ -22,19 +22,24 @@
 </div>
 
 
-  <h4> Dia:  {{dia}}</h4>
+  <h5> Dia:  {{dia}}</h5>
         <h5>Hora : {{hora}}</h5>
 
 
-    <div class="list">
 
-    <a class="item item-thumbnail-left" ui-sref="detalleDelServicio()" ng-repeat="s in confirmacion.pedido">
-      <img src="" style='border-radius:50%' >
-     <h2>{{s.nombre}}</h2>
-     
-    </a>
 
-  </div>
+   <div class="list">
+
+      <div class="item" ng-repeat="s in confirmacion.pedido">
+      {{s.nombre}}
+
+      <span class="item-note">
+      S/. {{s.precio}}
+      </span>
+      </div>
+
+
+      </div>
 
 
 

@@ -20,8 +20,6 @@ angular.module('app.controllers', ['ionic'])
 
 
 
-
-
     // Enable to debug issues.
   // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
   
@@ -240,7 +238,9 @@ function ($scope, $stateParams,$http) {
 
   console.log($stateParams.servicio)
 
-  $http.get(host+"/servicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response});
+  $scope.host= host
+
+  $http.get(host+"/detalledeservicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response[0]});
 
 
 
@@ -351,9 +351,13 @@ console.log('socia')
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage) {
 
+
+
+  console.log('locallslsl',$localStorage)
+
 $scope.salir=function(){
 
-  console.log('hdhdh')
+  console.log('Saliendo')
 
   delete $localStorage.token
 
@@ -363,7 +367,7 @@ $scope.salir=function(){
 
   $scope.toggleLeft = function() {
 
-    console.log('shhsh')
+
     $ionicSideMenuDelegate.toggleLeft();
   };
 
@@ -406,6 +410,9 @@ $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
 
 // fin Slider
 
+
+$http.get(host+"/miperfil/").success(function(response) {$scope.miperfil=response[0]});
+  
 
 $http.get(host+"/portadaphoto/").success(function(response) {$scope.portadaphoto=response});
     
