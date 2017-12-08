@@ -138,6 +138,13 @@ angular.module('app.routes', ['ngStorage'])
 
     })
 
+              .state('sociauser', {
+      url: '/sociauser',
+      templateUrl: 'templates/sociauser.html',
+      controller:'homeCtrl'
+
+    })
+
 
            .state('citas', {
       url: '/citas',

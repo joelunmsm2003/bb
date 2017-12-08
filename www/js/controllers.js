@@ -161,7 +161,7 @@ function ($scope, $stateParams,$http,$localStorage,$location) {
 
                         console.log('$scope.sacauser',$scope.eluser)
 
-                            if ($scope.eluser=='Cliente'){
+                            if ($scope.eluser['groups__name']=='Cliente'){
 
                                 $location.url('home')
 
@@ -450,7 +450,11 @@ $http.get(host+"/miperfil/").success(function(response) {
 
 });
   
+$http.get(host+"/sacasocia/").success(function(response) {$scope.sacasocia=response[0]
 
+console.log('saasocia',$scope.sacasocia)
+
+});
 
 $http.get(host+"/portadaphoto/").success(function(response) {$scope.portadaphoto=response});
     
