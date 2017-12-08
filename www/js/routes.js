@@ -131,6 +131,23 @@ angular.module('app.routes', ['ngStorage'])
 
     })
 
+           .state('user', {
+      url: '/user',
+      templateUrl: 'templates/user.html',
+      controller:'homeCtrl'
+
+    })
+
+
+           .state('citas', {
+      url: '/citas',
+      templateUrl: 'templates/citas.html',
+      controller:'homeCtrl'
+
+    })
+
+
+
 
 
  

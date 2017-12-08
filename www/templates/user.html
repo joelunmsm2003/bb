@@ -1,0 +1,68 @@
+<ion-view title="Detalle del Servicio" hide-nav-bar="true" id="page22">
+
+ <div ng-include src="'templates/tabs.html'"></div>
+
+
+  
+<ion-content padding="true" style="top:0px !important;" class="side-menu-left sider-menu">
+      <div class="spacer" style="width: 268px; height: 41px;"></div>
+      <div class="profile-menu">
+        <img src="{{host}}/{{miperfil.photo}}" style="display: block; width: 60%; height: auto; margin-left: auto; margin-right: auto;">
+      </div>
+
+
+      <div class="spacer" style="width: 300px; height: 30px;"></div>
+
+
+      <form  id="login-form4" class="list center-form">
+
+        <label class="item item-input" id="login-input4">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model='miperfil.nombre' placeholder="">
+        </label>
+
+        <label class="item item-input" id="login-input4">
+          <span class="input-label">Apellido</span>
+          <input type="text" ng-model='miperfil.apellido' placeholder="">
+        </label>
+
+ 
+        <label class="item item-input" id="login-input4">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model='miperfil.email' placeholder="">
+        </label>
+        <label class="item item-input" id="login-input5">
+          <span class="input-label">Telefono</span>
+          <input type="text" ng-model='miperfil.telefono' placeholder="">
+        </label>
+
+         <label class="item item-input" id="login-input5">
+          <span class="input-label">Direccion</span>
+          <input type="text" ng-model='miperfil.direccion' placeholder="">
+        </label>
+
+        <label class="item item-input" id="login-input5">
+          <span class="input-label">Distrito</span>
+          <input type="text" ng-model='miperfil.distrito__nombre' placeholder="">
+        </label>
+
+
+
+    
+        <label class="item item-input" id="login-input5">
+          <span class="input-label">Password</span>
+          <input type="text" ng-model='miperfil.password' placeholder="">
+        </label>
+
+        <a ui-sref="home()" id="login-button12" class="button button-dark button-block">Guardar</a>
+      </form>
+      
+
+
+
+
+    </ion-content>
+
+
+</ion-view>
+

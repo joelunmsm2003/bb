@@ -4456,9 +4456,9 @@ a.subdued {
 
 .tabs-dark > .tabs,
 .tabs.tabs-dark {
-  border-color: #ef473a;
+  border-color: #444;
   background-color: #444;
-  background-image: linear-gradient(0deg, #ef473a, #ef473a 50%, transparent 50%);
+  background-image: linear-gradient(0deg, #444, #444 50%, transparent 50%);
   color: #fff; }
   .tabs-dark > .tabs .tab-item .badge,
   .tabs.tabs-dark .tab-item .badge {

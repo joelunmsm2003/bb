@@ -5,6 +5,10 @@
 
 
 
+ <div ng-include src="'templates/tabs.html'"></div>
+
+
+
   <ion-nav-buttons side="left" style='background-color: transparent !important;'>
    
      <button class = "button button-icon icon ion-navicon" ng-click = "toggleLeft()"></button>
@@ -28,13 +32,20 @@
               <h5 id="menu-heading4" style="color:#FFFFFF;font-weight:300;text-align:center;">{{miperfil.user__groups__name}} </h5>
               <div class="spacer" style="width: 268px; height: 29px;"></div>
               <ion-list id="menu-list6">
-                <ion-item ui-sref="menu.perfil()" menu-close="" class="item-icon-left dark side-menu" id="menu-list-item17">
+                <ion-item ui-sref="perfil()" menu-close="" class="item-icon-left dark side-menu" id="menu-list-item17">
+
+
+                <i class = "icon ion-ios-person" ></i>
+
                     Mi Perfil</ion-item>
-                <ion-item  ui-sref="menu.socia()" menu-close="" class="item-icon-left dark side-menu"  id="menu-list-item71" >
-                  Servicios</ion-item>
-                <ion-item class="item-icon-left dark side-menu" id="menu-list-item73">
-                 Mis Clientes</ion-item>
+                <ion-item  ui-sref="citas()" menu-close="" class="item-icon-left dark side-menu"  id="menu-list-item71" >
+
+                <i class = "icon ion-ios-keypad"></i>
+                  Mi Historial</ion-item>
+                
                 <ion-item class="item-icon-left side-menu" menu-close="" ng-click='salir()' id="menu-list-item20">
+                <i class = "icon ion-log-out" ></i>
+                
                 Salir</ion-item>
               </ion-list>
               <div class="spacer" style="height: 100px;"></div>
@@ -49,7 +60,7 @@
  
 
 
-<ion-nav-bar class="nav-bar-container yape " nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
+<ion-nav-bar class="bar bar-dark nav-bar-container yape " nav-bar-transition="ios" nav-bar-direction="none" nav-swipe="">
    
     <div class="nav-bar-block " nav-bar="cached">
 

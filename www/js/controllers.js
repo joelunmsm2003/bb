@@ -155,7 +155,26 @@ function ($scope, $stateParams,$http,$localStorage,$location) {
 
                 console.log('ingrese...')
 
-                $location.url('home')
+                        $http.get(host+"/sacauser/").success(function(response) {
+
+                        $scope.eluser=response[0]
+
+                        console.log('$scope.sacauser',$scope.eluser)
+
+                            if ($scope.eluser=='Cliente'){
+
+                                $location.url('home')
+
+                            }else{
+
+                              $location.url('socia')
+
+                            }
+
+                        });
+
+
+                
 
                 $scope.logeandose=0
 
@@ -411,8 +430,27 @@ $scope.$on("$ionicSlides.slideChangeEnd", function(event, data){
 // fin Slider
 
 
-$http.get(host+"/miperfil/").success(function(response) {$scope.miperfil=response[0]});
+$http.get(host+"/miperfil/").success(function(response) {
+
+
+
+  $scope.miperfil=response[0]
+
+  console.log('$scope.miperfil',$scope.miperfil)
+
+
+  $http.get(host+"/miservicios/"+$scope.miperfil['id']).success(function(response) {$scope.miservicios=response
+
+
+    console.log('ppp',$scope.miservicios)
+
+  });
+
+
+
+});
   
+
 
 $http.get(host+"/portadaphoto/").success(function(response) {$scope.portadaphoto=response});
     
@@ -542,6 +580,15 @@ $scope.deselec=function(data,index){
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+
+
+}])
+
+.controller('userCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams) {
+
 
 
 }])

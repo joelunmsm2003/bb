@@ -13,30 +13,10 @@
 
 
   <ion-side-menus>
-  <!-- Left menu -->
-            <ion-side-menu side="left"><ion-content padding="false" style="top:0px !important;" class="side-menu-left sider-menu">
-                <div class="spacer" style="width: 268px; height: 41px;"></div>
-                <div class="profile-menu">
-                  <img src="img/c9IGoL3cR2KasOEdhEFr_original-tar-style-el-estilo-de-gafas-de-sol-famosas-9583182-4-esl-es-las-gafas-de-sol-de-las-celebrities-jpg.jpg" style="display: block; width: 60%; height: auto; margin-left: auto; margin-right: auto;">
-                </div>
-                <h1 id="menu-heading4" style="color:#FFFFFF;font-weight:300;text-align:center;">Ana Maria </h1>
-                <div class="spacer" style="width: 268px; height: 29px;"></div>
-                <ion-list id="menu-list6">
-                  <ion-item ui-sref="menu.perfil()" menu-close="" class="item-icon-left dark side-menu" id="menu-list-item17">
-                      Mi Perfil</ion-item>
-                  <ion-item  ui-sref="menu.socia()" menu-close="" class="item-icon-left dark side-menu"  id="menu-list-item71" >
-                    Servicios</ion-item>
-                  <ion-item class="item-icon-left dark side-menu" id="menu-list-item73">
-                   Mis Clientes</ion-item>
-                  <ion-item class="item-icon-left side-menu" menu-close="" ng-click='salir()' id="menu-list-item20">
-                  Salir</ion-item>
-                </ion-list>
-                <div class="spacer" style="height: 100px;"></div>
-                <div class="spacer" style="height: 100px;"></div>
-                <div class="spacer" style="height: 100px;"></div>
-                
-              </ion-content>
-  </ion-side-menu>
+
+
+  <div ng-include src="'templates/menusocia.html'"></div>
+
 
   <ion-side-menu-content>
 

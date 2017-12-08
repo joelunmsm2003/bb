@@ -1,0 +1,33 @@
+<ion-view title="Detalle del Servicio" hide-nav-bar="true" id="page22">
+
+ <div ng-include src="'templates/tabs.html'"></div>
+
+
+  
+<ion-content padding="true" style="top:0px !important;" class="side-menu-left sider-menu">
+     
+
+      <div class="spacer" style="width: 300px; height: 30px;"></div>
+
+    
+
+
+    <div class="list">
+
+    <a class="item item-avatar" ng-repeat="p in miservicios" >
+      <img src="{{host}}/{{p.socia__photo}}">
+      <h2>{{p.socia__nombre}}</h2>
+<!--       <p>Back off, man. I'm a scientist. --></p>
+    </a>
+
+    
+
+</div>
+
+
+
+    </ion-content>
+
+
+</ion-view>
+
