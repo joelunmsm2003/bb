@@ -11,6 +11,20 @@ from django.db import models
 
 from django.contrib.auth.models import User
 
+class Smsrecibidos(models.Model):
+    text = models.CharField(max_length=1000)
+    when = models.DateTimeField(blank=True, null=True)
+    sender = models.CharField(max_length=1000,blank=True, null=True)
+    receiver = models.CharField(max_length=1000,blank=True, null=True)
+    receiver_1 = models.CharField(max_length=1000,blank=True, null=True)
+
+    class Meta:
+        managed = True
+        verbose_name = 'Sms Recibidos'
+
+    def __unicode__(self):
+        return self.text
+
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=1000)

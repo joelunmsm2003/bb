@@ -50,11 +50,14 @@ angular.module('app.controllers', ['ionic'])
                 $location.url('notificaciondeservicio/'+data['servicio'])
 
               }
-              if (data['detalle']=='socia-cliente'){
+
+              if (data['detalle']=='aceptaservicio'){
 
                 $location.url('detallepeticion/'+data['servicio'])
 
               }
+
+  
 
 
            })
@@ -365,14 +368,50 @@ console.log('socia')
 }])
 
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate','$localStorage',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate','$localStorage','$locale',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage,$locale) {
 
 
 
   console.log('locallslsl',$localStorage)
+
+  function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+
+    console.log('ioo',position.coords.latitude,position.coords.longitude)
+}
+
+
+getLocation()
+
+
+
+       $scope.center = [-12.08,-76.99];
+        $scope.latlng = [-12.08, -76.99];
+        $scope.getpos = function (event) {
+            $scope.lat = event.latLng.lat();
+            $scope.lng = event.latLng.lng();
+            $scope.latlng = [event.latLng.lat(), event.latLng.lng()];
+        };
+
+
+        $scope.placeMarker = function(){
+            console.log(this.getPlace());  
+            var loc = this.getPlace().geometry.location;
+            $scope.latlng = [loc.lat(), loc.lng()];
+            $scope.center = [loc.lat(), loc.lng()];
+        };
+
+
 
 $scope.salir=function(){
 
@@ -396,8 +435,18 @@ $scope.servicios = $stateParams.servicio
 
 $scope.pedidos=$filter('filter')($scope.servicios,{"check" : true})
 
+$scope.monto=0
 
-console.log('pedidos',$scope.pedidos)
+for (p in $scope.pedidos){
+
+
+  $scope.monto=$scope.monto+$scope.pedidos[p]['precio']
+
+
+}
+
+
+console.log('monto',$scope.monto)
 
 
 $scope.host = host
@@ -571,6 +620,36 @@ $scope.deselec=function(data,index){
 
     console.log($scope.totalpedido)
 }
+
+$scope.quitar=function(data){
+
+
+
+  for (var i =0; i < $scope.pedidos.length; i++){
+
+    if($scope.pedidos[i].nombre === $filter('filter')($scope.pedidos,{"nombre" : data.nombre})[0].nombre){
+
+       $scope.pedidos.splice(i,1);
+       break;
+    }
+
+  }
+
+
+
+    data.check=false
+
+    $scope.book=$scope.book-1
+
+    $scope.precio =$scope.precio -data.precio
+
+    $scope.monto=$scope.monto-data.precio
+
+
+    
+
+}
+
 
 
 

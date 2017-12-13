@@ -1,4 +1,4 @@
-angular.module('app.routes', ['ngStorage'])
+angular.module('app.routes', ['ngStorage','ngMap'])
 
 .config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
