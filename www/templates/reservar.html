@@ -1,13 +1,16 @@
 <ion-view title="Reservar" id="page22">
   
   <ion-content padding="true" class="has-header">
+
+  <div id="map" data-tap-disabled="true"></div>
+
     <div id="reservar-button-bar16" class="button-bar"></div>
     <div id="reservar-button-bar17" class="button-bar"></div>
     <form id="reservar-form21" class="list">
       
       <div id="reservar-button-bar18" class="button-bar"></div>
 
-      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">Tu pedido</h4>
+      <h4 id="reservar-heading9" style="color:#000000;font-weight:300;">Detalle de tu pedido</h4>
 
       <div class="list">
 
@@ -73,18 +76,22 @@ S/. {{p.precio}}
         </select>
       </label>
 
-            <label class="item item-input" id="reservar-input39">
+            <label class="item item-input" id="reservar-input39" style='padding: 16px;'>
             <input places-auto-complete style='border:1px;' types="['geocode']" on-place-changed="placeMarker()" />
 
             </label>
 
             <div class='card'>
-  <ng-map id="mapa" center="{{center}}" zoom="14" on-click="getpos($event)" style='width: 100%;'>
+
+            ewewew
+
+
+  <!-- <ng-map id="mapa" center="{{center}}" zoom="17" on-click="getpos($event)" style='width: 100%;'>
       <marker position="{{latlng}}" on-dragend="getpos($event)" 
         animation="Animation.BOUNCE" animation="DROP" draggable="true"></marker>
-    </ng-map>
-    {{latlng}}
-
+    </ng-map> -->
+  <!--   {{latlng}}
+ -->
     </div>
 
 
@@ -113,7 +120,7 @@ S/. {{p.precio}}
 
 
     </form>
-    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="confirmacion({pedido: pedidos,reserva:reserva})">Siguiente</button>
+    <button id="reservar-button119" class="button button-assertive button-block" ui-sref="confirmacion({pedido: pedidos,reserva:reserva,ubicacion:latlng})">Confirmar Pedido</button>
   </ion-content>
 </ion-view>
 

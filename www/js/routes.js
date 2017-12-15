@@ -1,4 +1,4 @@
-angular.module('app.routes', ['ngStorage','ngMap'])
+angular.module('app.routes', ['ngStorage'])
 
 .config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
@@ -93,7 +93,8 @@ angular.module('app.routes', ['ngStorage','ngMap'])
       controller:'confirmacionCtrl',
       params: {
         pedido: null,
-        reserva:null
+        reserva:null,
+        ubicacion:null
       }
     })
 

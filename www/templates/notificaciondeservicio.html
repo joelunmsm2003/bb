@@ -41,7 +41,14 @@
 
   <h4>Dia : {{servicio.dia__nombre}}</h4>
   <h4> Hora:  {{servicio.fecha_inicio}}</h4>
-      
+
+  <h4>{{servicio.latitud}}</h4>
+  <h4>{{servicio.longitud}}</h4>
+
+  <ng-map id="mapa" center="{{center}}" zoom="17" on-click="getpos($event)" style='width: 100%;'>
+      <marker position="{{latlng}}" on-dragend="getpos($event)" 
+        animation="Animation.BOUNCE" animation="DROP" draggable="true"></marker>
+    </ng-map>  
 
 
     <div class="list">

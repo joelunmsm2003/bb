@@ -89,10 +89,60 @@ angular.module('app.controllers', ['ionic'])
   
 })
   
-.controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$compile', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$localStorage,$location) {
+function ($scope, $stateParams,$http,$localStorage,$compile) {
+
+
+   function initialize() {
+
+
+      console.log('hhdhdhhdhd')
+        var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
+        
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+
+        var map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);
+
+        console.log('map',map)
+        
+        //Marker + infowindow + angularjs compiled ng-click
+        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
+        var compiled = $compile(contentString)($scope);
+
+        var infowindow = new google.maps.InfoWindow({
+          content: compiled[0]
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          title: 'Uluru (Ayers Rock)'
+        });
+
+
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+
+        $scope.map = map;
+
+        console.log('mappp,',map)
+      }
+
+
+    
+      setTimeout(function(){ initialize() }, 1000);
+
+
 
 
     if($localStorage.token){
@@ -221,7 +271,14 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams,$http) {
 
 
-  $http.get(host+"/detalledeservicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response[0]});
+  $http.get(host+"/detalledeservicio/"+$stateParams.servicio).success(function(response) {$scope.servicio=response[0]
+
+
+  $scope.latlng=[$scope.servicio['latitud'],$scope.servicio['longitud']]
+
+
+
+  });
 
   $scope.host=host
 
@@ -310,6 +367,8 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope,$stateParams,$http,$location) {
 
+console.log('$stateParams',$stateParams)
+
 
 $scope.confirmacion = $stateParams
 
@@ -326,7 +385,8 @@ $scope.hora =JSON.stringify(x).substring(12,20)
 var todo={
 
     'pedido':$stateParams.pedido,
-    'reserva':$stateParams.reserva
+    'reserva':$stateParams.reserva,
+    'ubicacion':$stateParams.ubicacion
 }
 
 $http({
@@ -368,48 +428,48 @@ console.log('socia')
 }])
 
    
-.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate','$localStorage','$locale',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('homeCtrl', ['$scope', '$stateParams','$http','$ionicPopover','$filter','$ionicSlideBoxDelegate','$location','$ionicSideMenuDelegate','$localStorage',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage,$locale) {
+function ($scope, $stateParams,$http,$ionicPopover,$filter,$ionicSlideBoxDelegate,$location,$ionicSideMenuDelegate,$localStorage) {
 
 
 
-  console.log('locallslsl',$localStorage)
-
-  function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-function showPosition(position) {
-
-    console.log('ioo',position.coords.latitude,position.coords.longitude)
-}
 
 
-getLocation()
+//   function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//     } else {
+//         x.innerHTML = "Geolocation is not supported by this browser.";
+//     }
+// }
+
+// function showPosition(position) {
+
+//     console.log('ioo',position.coords.latitude,position.coords.longitude)
+// }
+
+
+// getLocation()
 
 
 
-       $scope.center = [-12.08,-76.99];
-        $scope.latlng = [-12.08, -76.99];
-        $scope.getpos = function (event) {
-            $scope.lat = event.latLng.lat();
-            $scope.lng = event.latLng.lng();
-            $scope.latlng = [event.latLng.lat(), event.latLng.lng()];
-        };
+//        $scope.center = [-12.08,-76.99];
+//         $scope.latlng = [-12.08, -76.99];
+//         $scope.getpos = function (event) {
+//             $scope.lat = event.latLng.lat();
+//             $scope.lng = event.latLng.lng();
+//             $scope.latlng = [event.latLng.lat(), event.latLng.lng()];
+//         };
 
 
-        $scope.placeMarker = function(){
-            console.log(this.getPlace());  
-            var loc = this.getPlace().geometry.location;
-            $scope.latlng = [loc.lat(), loc.lng()];
-            $scope.center = [loc.lat(), loc.lng()];
-        };
+//         $scope.placeMarker = function(){
+//             console.log(this.getPlace());  
+//             var loc = this.getPlace().geometry.location;
+//             $scope.latlng = [loc.lat(), loc.lng()];
+//             $scope.center = [loc.lat(), loc.lng()];
+//         };
 
 
 
