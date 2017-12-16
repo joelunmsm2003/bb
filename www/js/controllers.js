@@ -89,59 +89,13 @@ angular.module('app.controllers', ['ionic'])
   
 })
   
-.controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$compile', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$http','$localStorage','$compile','$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$http,$localStorage,$compile) {
+function ($scope, $stateParams,$http,$localStorage,$compile,$location) {
 
 
-   function initialize() {
-
-
-      console.log('hhdhdhhdhd')
-        var myLatlng = new google.maps.LatLng(43.07493,-89.381388);
-        
-        var mapOptions = {
-          center: myLatlng,
-          zoom: 16,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-
-
-        var map = new google.maps.Map(document.getElementById("map"),
-            mapOptions);
-
-        console.log('map',map)
-        
-        //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>Click me!</a></div>";
-        var compiled = $compile(contentString)($scope);
-
-        var infowindow = new google.maps.InfoWindow({
-          content: compiled[0]
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title: 'Uluru (Ayers Rock)'
-        });
-
-
-
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
-
-        $scope.map = map;
-
-        console.log('mappp,',map)
-      }
-
-
-    
-      setTimeout(function(){ initialize() }, 1000);
-
+   
 
 
 
